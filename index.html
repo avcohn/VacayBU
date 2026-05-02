@@ -281,7 +281,7 @@
             </div>
 
             <div class="submit-row">
-              <button class="btn btn-primary" type="submit"><i class="ph ph-magic-wand"></i> צור בריף לאתר</button>
+              <button class="btn btn-primary" type="submit"><i class="ph ph-magic-wand"></i> צור מסלול טיול</button>
               <button class="btn btn-ghost" type="button" id="resetBtn"><i class="ph ph-arrow-counter-clockwise"></i> איפוס</button>
             </div>
           </form>
@@ -312,8 +312,8 @@
 
       <section class="output" id="outputBox">
         <div class="output-head">
-          <strong>בריף מוכן לשליחה ל־ChatGPT / API</strong>
-          <button id="copyBtn" type="button">העתק</button>
+          <strong>מסלול טיול שנוצר לפי הבקשה</strong>
+          <button id="copyBtn" type="button">העתק מסלול</button>
         </div>
         <pre id="briefOutput"></pre>
       </section>
@@ -394,35 +394,117 @@
     });
     document.querySelectorAll('input[name="pref"]').forEach(x => x.addEventListener('change', updatePreview));
 
-    document.getElementById('tripForm').addEventListener('submit', (e) => {
-      e.preventDefault();
+    function buildDayTheme(dayNumber, prefs){
+      if(!prefs.length){
+        const defaults = ['היכרות עם העיר', 'אתרים מרכזיים', 'שכונות מקומיות', 'יום רגוע וקולינרי', 'סיום עם נקודת תצפית'];
+        return defaults[(dayNumber - 1) % defaults.length];
+      }
+      return prefs[(dayNumber - 1) % prefs.length];
+    }
+
+    function buildActivitiesByTheme(theme, destination, dayNumber, specialNeeds){
+      const pace = specialNeeds ? 'בקצב רגוע, עם הפסקות יזומות ומרחקי הליכה קצרים' : 'בקצב נעים ומאוזן';
+
+      const templates = {
+        'שופינג': {
+          title: `יום שופינג וטעימות ב${destination}`,
+          morning: 'פתיחה באזור קניות מרכזי, חנויות מוכרות ומותגים נוחים למשפחה.',
+          noon: 'צהריים קליל במתחם אוכל או רחוב מרכזי, עם זמן מנוחה קצר.',
+          evening: 'סיבוב ערב רגוע באזור מואר ונעים, קפה/גלידה וסיום לא מאוחר.'
+        },
+        'תרבות ואומנות': {
+          title: `יום תרבות ואומנות ב${destination}`,
+          morning: 'מוזיאון מרכזי או אתר היסטורי חשוב, עדיף עם פעילות שמתאימה גם לילדים.',
+          noon: 'ארוחת צהריים ליד רובע תרבותי והמשך לשיטוט קצר בגלריות/כיכרות.',
+          evening: 'מופע, תצפית עירונית או סיבוב ערב באיזור קלאסי ויפה.'
+        },
+        'פופ': {
+          title: `יום פופ, צבע וחוויות עכשוויות ב${destination}`,
+          morning: 'אטרקציה אינטראקטיבית, מוזיאון חווייתי או אזור צעיר וצבעוני.',
+          noon: 'עצירת אוכל אינסטגרמית, קינוח מיוחד או מקום צילום מגניב.',
+          evening: 'רחוב בילוי מרכזי, מוזיקה, חנויות קונספט וסיום קליל.'
+        },
+        'טבע': {
+          title: `יום טבע ונוף ב${destination}`,
+          morning: 'פארק גדול, גנים, טיילת או נקודת תצפית ירוקה שמתאימה למשפחות.',
+          noon: 'פיקניק/צהריים ליד אזור ירוק והפסקה ארוכה יותר.',
+          evening: 'חזרה לעיר לסיבוב קצר, ארוחה רגועה וסיום מוקדם.'
+        },
+        'אקסטרים': {
+          title: `יום אקשן ואקסטרים ב${destination}`,
+          morning: 'אטרקציה פעילה: פארק חבלים, רכיבה, שייט, פארק שעשועים או פעילות אדרנלין.',
+          noon: 'צהריים והתאוששות אחרי הפעילות, עם זמן מנוחה מסודר.',
+          evening: 'פעילות ערב קלילה יותר כדי לא להעמיס על היום.'
+        },
+        'חיי המקומיים': {
+          title: `יום חיי מקומיים ב${destination}`,
+          morning: 'שוק מקומי, מאפייה שכונתית, קפה קטן וסיבוב באזור פחות תיירותי.',
+          noon: 'ארוחה במקום מקומי והמשך לשכונה מעניינת עם חנויות קטנות.',
+          evening: 'טיילת, כיכר שכונתית או בר/מסעדה באווירה מקומית.'
+        }
+      };
+
+      const fallback = {
+        title: `יום ${dayNumber} ב${destination}`,
+        morning: 'פתיחה רגועה באתר מרכזי או שכונה מעניינת.',
+        noon: 'צהריים והמשך למסלול קצר לפי מזג האוויר והאנרגיה.',
+        evening: 'סיבוב ערב נעים וסיום רגוע.'
+      };
+
+      const data = templates[theme] || fallback;
+      return `יום ${dayNumber}: ${data.title}
+• בוקר: ${data.morning}
+• צהריים: ${data.noon}
+• ערב: ${data.evening}
+• קצב מומלץ: ${pace}`;
+    }
+
+    function buildTripItinerary(){
       const dest = document.getElementById('destination').value.trim();
       const start = document.getElementById('startDate').value;
       const end = document.getElementById('endDate').value;
       const prefs = getPrefs();
-      const special = document.getElementById('specialNeeds').checked ? 'כן' : 'לא';
-      const notes = document.getElementById('notes').value.trim() || 'אין';
-      const days = daysBetween(start,end) || 'לא חושב';
+      const specialNeeds = document.getElementById('specialNeeds').checked;
+      const notes = document.getElementById('notes').value.trim();
+      const days = daysBetween(start,end);
 
-      const brief = `צור לי מיני־סייט פרימיום מלא, רספונסיבי ומוכן ל-GitHub Pages עבור טיול.
+      if(!dest || !start || !end || !days){
+        return 'חסרים פרטים ליצירת מסלול. יש למלא יעד ותאריכים תקינים.';
+      }
 
-פרטי הטיול:
-יעד/יעדים: ${dest}
+      const intro = `מסלול טיול מוצע: ${dest}
 תאריכים: ${formatDate(start)} עד ${formatDate(end)}
-מספר ימים: ${days}
+משך: ${days} ימים
 הרכב נוסעים: ${state.adults} מבוגרים, ${state.kids} ילדים
-צריך התאמה לצרכים מיוחדים/נגישות/קצב מותאם: ${special}
-העדפות: ${prefs.length ? prefs.join(', ') : 'לא נבחרו העדפות'}
-הערות נוספות: ${notes}
+התאמות מיוחדות: ${specialNeeds ? 'כן — המסלול נבנה בקצב רגוע ונגיש יותר' : 'לא'}
+העדפות: ${prefs.length ? prefs.join(', ') : 'מסלול כללי מאוזן'}
+${notes ? `הערות נוספות: ${notes}
+` : ''}
+`;
 
-דרישות לאתר:
-- עיצוב פרימיום יוקרתי, RTL בעברית, מותאם מובייל ודסקטופ.
-- Hero מרשים, ניווט sticky, כרטיס לכל יום, טיפים חשובים וסיכום.
-- לכל יום: כותרת, תיאור קצר, פעילות בוקר/צהריים/ערב, דגש משפחתי, והמלצה שימושית.
-- להשתמש בצבעי navy/gold, כרטיסים מעוגלים, צללים עדינים, אנימציות קלות.
-- להחזיר קובץ HTML מלא אחד בלבד, כולל CSS ו-JS בתוך הקובץ.`;
+      const dayPlans = [];
+      for(let i=1; i<=days; i++){
+        const theme = buildDayTheme(i, prefs);
+        dayPlans.push(buildActivitiesByTheme(theme, dest, i, specialNeeds));
+      }
 
-      document.getElementById('briefOutput').textContent = brief;
+      const outro = `
+דגשים כלליים:
+• להשאיר בכל יום זמן מנוחה ולא לדחוס יותר מדי.
+• להזמין מראש אטרקציות פופולריות.
+• ביום האחרון לתכנן סיום מוקדם יותר אם יש טיסה/אריזות.
+• אחרי קבלת מלון מדויק אפשר לדייק את המסלול לפי אזורים ומרחקי הליכה.`;
+
+      return intro + '
+' + dayPlans.join('
+
+') + outro;
+    }
+
+    document.getElementById('tripForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const itinerary = buildTripItinerary();
+      document.getElementById('briefOutput').textContent = itinerary;
       document.getElementById('outputBox').style.display = 'block';
       document.getElementById('outputBox').scrollIntoView({behavior:'smooth', block:'start'});
     });
