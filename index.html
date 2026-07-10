@@ -8,23 +8,29 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <meta name="theme-color" content="#2563eb">
+  <meta name="theme-color" content="#7c3aed">
 
-  <title>צ'קליסט ציוד לכיתה ג׳</title>
+  <title>מתכוננים לכיתה ג׳</title>
 
   <style>
     :root {
-      --background: #f4f8ff;
+      --purple: #7c3aed;
+      --purple-dark: #5b21b6;
+      --pink: #ec4899;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --yellow: #facc15;
+      --orange: #fb923c;
+      --red: #f87171;
+
+      --background: #fffaf3;
       --card: #ffffff;
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --light-blue: #dbeafe;
-      --text: #172033;
-      --muted: #64748b;
-      --border: #dbe5f2;
-      --success: #16a34a;
-      --success-light: #ecfdf3;
-      --shadow: 0 12px 30px rgba(37, 99, 235, 0.1);
+      --text: #26324a;
+      --muted: #6b7280;
+      --border: #e8e4f3;
+
+      --shadow:
+        0 12px 30px rgba(91, 33, 182, 0.10);
     }
 
     * {
@@ -38,20 +44,30 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: Arial, "Noto Sans Hebrew", sans-serif;
+      overflow-x: hidden;
+      font-family:
+        Arial,
+        "Noto Sans Hebrew",
+        sans-serif;
       color: var(--text);
 
       background:
         radial-gradient(
-          circle at top right,
-          #dbeafe 0,
-          transparent 35%
+          circle at 10% 5%,
+          rgba(250, 204, 21, 0.25),
+          transparent 24%
         ),
-        linear-gradient(
-          180deg,
-          #f8fbff 0%,
-          var(--background) 100%
-        );
+        radial-gradient(
+          circle at 92% 14%,
+          rgba(236, 72, 153, 0.18),
+          transparent 26%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(59, 130, 246, 0.16),
+          transparent 32%
+        ),
+        var(--background);
     }
 
     button,
@@ -59,95 +75,237 @@
       font-family: inherit;
     }
 
-    .page-container {
-      width: min(960px, calc(100% - 28px));
-      margin: 0 auto;
-      padding: 28px 0 50px;
+    button:focus-visible,
+    input:focus-visible {
+      outline: 4px solid rgba(250, 204, 21, 0.65);
+      outline-offset: 3px;
     }
 
-    /* כותרת */
+    .page {
+      position: relative;
+      z-index: 2;
+      width: min(1050px, calc(100% - 24px));
+      margin: 0 auto;
+      padding: 20px 0 55px;
+    }
+
+    /* קישוטים ברקע */
+
+    .background-shape {
+      position: fixed;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.35;
+      animation: floating 5s ease-in-out infinite;
+    }
+
+    .shape-one {
+      top: 12%;
+      right: 2%;
+      font-size: 45px;
+    }
+
+    .shape-two {
+      top: 42%;
+      left: 2%;
+      font-size: 42px;
+      animation-delay: 1s;
+    }
+
+    .shape-three {
+      bottom: 8%;
+      right: 3%;
+      font-size: 42px;
+      animation-delay: 2s;
+    }
+
+    @keyframes floating {
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(5deg);
+      }
+    }
+
+    /* אזור עליון */
 
     .hero {
       position: relative;
       overflow: hidden;
       padding: 30px;
+      border: 4px solid white;
+      border-radius: 32px;
       color: white;
-      border-radius: 28px;
 
       background:
         linear-gradient(
           135deg,
-          #1d4ed8,
-          #2563eb 55%,
-          #60a5fa
+          #7c3aed 0%,
+          #8b5cf6 48%,
+          #ec4899 100%
         );
 
-      box-shadow: var(--shadow);
+      box-shadow:
+        0 16px 35px rgba(124, 58, 237, 0.24);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: -55px;
+      left: -40px;
+      width: 170px;
+      height: 170px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.13);
     }
 
     .hero::after {
-      content: "🎒";
+      content: "";
       position: absolute;
-      left: 22px;
-      top: 12px;
-      font-size: 90px;
-      opacity: 0.16;
-      transform: rotate(-10deg);
+      right: -30px;
+      bottom: -70px;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      background: rgba(250, 204, 21, 0.19);
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 13px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 14px;
+      font-weight: bold;
+      backdrop-filter: blur(8px);
     }
 
     .hero h1 {
-      margin: 0 0 10px;
-      font-size: clamp(30px, 7vw, 48px);
-      line-height: 1.1;
+      margin: 0;
+      font-size: clamp(34px, 8vw, 58px);
+      line-height: 1.05;
+      text-shadow:
+        0 4px 0 rgba(91, 33, 182, 0.3);
     }
 
-    .hero-description {
-      max-width: 650px;
-      margin: 0;
-      font-size: 17px;
-      line-height: 1.6;
-      opacity: 0.95;
+    .hero-text {
+      max-width: 680px;
+      margin: 14px 0 0;
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .hero-emoji {
+      position: absolute;
+      z-index: 1;
+      left: 28px;
+      top: 28px;
+      font-size: 92px;
+      opacity: 0.22;
+      transform: rotate(-10deg);
     }
 
     /* התקדמות */
 
-    .progress-container {
-      margin-top: 22px;
-      padding: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(8px);
+    .progress-box {
+      margin-top: 24px;
+      padding: 17px;
+      border: 2px solid rgba(255, 255, 255, 0.27);
+      border-radius: 21px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
     }
 
-    .progress-header {
+    .progress-top {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 15px;
-      margin-bottom: 10px;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 11px;
       font-weight: bold;
     }
 
-    .progress-track {
-      width: 100%;
-      height: 13px;
-      overflow: hidden;
+    .progress-result {
+      padding: 5px 10px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.28);
+      background: rgba(255, 255, 255, 0.18);
+      white-space: nowrap;
+    }
+
+    .progress-track {
+      position: relative;
+      width: 100%;
+      height: 18px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      background: rgba(61, 20, 108, 0.28);
     }
 
     .progress-fill {
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: white;
-      transition: width 0.3s ease;
+
+      background:
+        repeating-linear-gradient(
+          -45deg,
+          #facc15,
+          #facc15 12px,
+          #fde047 12px,
+          #fde047 24px
+        );
+
+      transition: width 0.35s ease;
+    }
+
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 13px;
+      font-size: 26px;
+    }
+
+    .star {
+      filter: grayscale(1);
+      opacity: 0.35;
+      transition:
+        transform 0.25s ease,
+        filter 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .star.active {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.15) rotate(-7deg);
+    }
+
+    /* הודעת עידוד */
+
+    .encouragement {
+      margin: 18px 0;
+      padding: 15px 18px;
+      border: 3px solid #fde68a;
+      border-radius: 20px;
+      background: #fff8cf;
+      text-align: center;
+      font-size: 17px;
+      font-weight: bold;
+      box-shadow: 0 7px 18px rgba(250, 204, 21, 0.12);
     }
 
     /* כפתורים */
@@ -155,157 +313,389 @@
     .toolbar {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      justify-content: center;
+      gap: 11px;
       margin: 20px 0;
     }
 
     .button {
-      min-height: 45px;
-      padding: 11px 18px;
+      min-height: 48px;
+      padding: 12px 19px;
       border: 0;
-      border-radius: 14px;
-      font-size: 15px;
+      border-bottom: 4px solid rgba(0, 0, 0, 0.13);
+      border-radius: 16px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+
       transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+        transform 0.15s ease,
+        border-bottom-width 0.15s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
     }
 
-    .button-primary {
+    .button:active {
+      transform: translateY(2px);
+      border-bottom-width: 1px;
+    }
+
+    .button-check-all {
       color: white;
-      background: var(--primary);
-      box-shadow: 0 7px 18px rgba(37, 99, 235, 0.2);
+      background: var(--green);
     }
 
-    .button-secondary {
-      color: var(--primary-dark);
-      border: 1px solid var(--border);
-      background: white;
+    .button-reset {
+      color: white;
+      background: var(--pink);
     }
 
-    /* רשימת הקטגוריות */
+    .button-print {
+      color: #473500;
+      background: var(--yellow);
+    }
+
+    /* כרטיסים */
 
     .checklist-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
       align-items: start;
-      gap: 16px;
+      gap: 18px;
     }
 
     .category {
+      position: relative;
+      overflow: hidden;
       padding: 19px;
-      border: 1px solid var(--border);
-      border-radius: 21px;
+      border: 3px solid var(--category-light);
+      border-radius: 25px;
       background: var(--card);
-      box-shadow: 0 8px 24px rgba(23, 32, 51, 0.05);
+      box-shadow: var(--shadow);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .category:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 16px 32px rgba(91, 33, 182, 0.14);
+    }
+
+    .category::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      left: -35px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--category-light);
+      opacity: 0.55;
+    }
+
+    .purple-category {
+      --category-color: #7c3aed;
+      --category-light: #ede9fe;
+    }
+
+    .blue-category {
+      --category-color: #2563eb;
+      --category-light: #dbeafe;
+    }
+
+    .pink-category {
+      --category-color: #db2777;
+      --category-light: #fce7f3;
+    }
+
+    .green-category {
+      --category-color: #16a34a;
+      --category-light: #dcfce7;
+    }
+
+    .orange-category {
+      --category-color: #ea580c;
+      --category-light: #ffedd5;
+    }
+
+    .yellow-category {
+      --category-color: #a16207;
+      --category-light: #fef9c3;
+    }
+
+    .red-category {
+      --category-color: #dc2626;
+      --category-light: #fee2e2;
+    }
+
+    .cyan-category {
+      --category-color: #0891b2;
+      --category-light: #cffafe;
+    }
+
+    .category-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 10px;
+    }
+
+    .category-icon {
+      display: grid;
+      flex: 0 0 auto;
+      width: 50px;
+      height: 50px;
+      place-items: center;
+      border-radius: 17px;
+      background: var(--category-light);
+      font-size: 27px;
+      transform: rotate(-4deg);
+    }
+
+    .category-title-box {
+      flex: 1;
     }
 
     .category-title {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin: 0 0 12px;
-      color: var(--primary-dark);
-      font-size: 20px;
+      margin: 0;
+      color: var(--category-color);
+      font-size: 21px;
     }
 
-    .category-count {
-      margin-right: auto;
-      padding: 4px 9px;
+    .category-subtitle {
+      margin: 3px 0 0;
       color: var(--muted);
-      border-radius: 999px;
-      background: #f1f5f9;
-      font-size: 12px;
-      font-weight: normal;
+      font-size: 13px;
     }
 
-    /* פריטי הצ'קליסט */
+    .category-progress {
+      margin-bottom: 9px;
+      color: var(--category-color);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* פריטים */
 
     .checklist-item {
+      position: relative;
       display: flex;
-      align-items: flex-start;
-      gap: 11px;
-      padding: 12px 4px;
-      border-bottom: 1px dashed #e5ebf4;
-      line-height: 1.5;
+      align-items: center;
+      gap: 12px;
+      min-height: 50px;
+      padding: 11px 8px;
+      border-bottom: 2px dashed #eceaf3;
+      border-radius: 12px;
+      line-height: 1.45;
       cursor: pointer;
-      transition: background 0.2s ease;
-    }
 
-    .checklist-item:hover {
-      background: #f8fbff;
+      transition:
+        background 0.2s ease,
+        transform 0.2s ease;
     }
 
     .checklist-item:last-child {
       border-bottom: 0;
     }
 
-    .checklist-item input {
-      flex: 0 0 auto;
-      width: 22px;
-      height: 22px;
-      margin: 1px 0 0;
-      accent-color: var(--success);
-      cursor: pointer;
+    .checklist-item:hover {
+      background: var(--category-light);
+      transform: translateX(-3px);
     }
 
-    .checklist-item span {
+    .checklist-item input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+    }
+
+    .custom-checkbox {
+      display: grid;
+      flex: 0 0 auto;
+      width: 29px;
+      height: 29px;
+      place-items: center;
+      border: 3px solid var(--category-color);
+      border-radius: 10px;
+      background: white;
+      font-size: 18px;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .checklist-item input:checked
+      + .custom-checkbox {
+      color: white;
+      background: var(--category-color);
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .checklist-item input:checked
+      + .custom-checkbox::after {
+      content: "✓";
+      font-weight: bold;
+    }
+
+    .item-text {
+      flex: 1;
+      font-size: 16px;
+      font-weight: 600;
+
       transition:
         color 0.2s ease,
         opacity 0.2s ease;
     }
 
-    .checklist-item.completed span {
-      color: var(--muted);
+    .checklist-item.completed {
+      background: #f7fff9;
+    }
+
+    .checklist-item.completed .item-text {
+      color: #789184;
       text-decoration: line-through;
-      opacity: 0.75;
+      opacity: 0.74;
+    }
+
+    .checklist-item.completed::after {
+      content: "⭐";
+      margin-right: auto;
+      font-size: 18px;
+      animation: pop 0.3s ease;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0);
+      }
+
+      75% {
+        transform: scale(1.35);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
     /* הודעת סיום */
 
     .completion-message {
       display: none;
-      margin-top: 20px;
-      padding: 18px;
+      margin-top: 24px;
+      padding: 24px;
+      border: 4px solid #86efac;
+      border-radius: 25px;
       color: #166534;
-      border: 1px solid #bbf7d0;
-      border-radius: 17px;
-      background: var(--success-light);
+      background:
+        linear-gradient(
+          135deg,
+          #dcfce7,
+          #f0fdf4
+        );
       text-align: center;
-      font-size: 18px;
-      font-weight: bold;
+      box-shadow:
+        0 12px 26px rgba(34, 197, 94, 0.16);
+    }
+
+    .completion-message.show {
+      display: block;
+      animation: celebrationBox 0.55s ease;
+    }
+
+    .completion-message h2 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+
+    .completion-message p {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    @keyframes celebrationBox {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+
+      70% {
+        transform: scale(1.04);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* קונפטי */
+
+    .confetti {
+      position: fixed;
+      z-index: 999;
+      top: -25px;
+      width: 13px;
+      height: 18px;
+      border-radius: 4px;
+      pointer-events: none;
+      animation: confettiFall 2.8s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+        opacity: 0;
+      }
     }
 
     .footer-note {
-      margin: 20px 0 0;
+      margin: 24px 0 0;
       color: var(--muted);
       text-align: center;
       font-size: 14px;
       line-height: 1.6;
     }
 
-    /* התאמה לטלפון */
+    /* התאמה לנייד */
 
-    @media (max-width: 720px) {
-      .page-container {
-        width: min(100% - 20px, 960px);
-        padding-top: 10px;
+    @media (max-width: 730px) {
+      .page {
+        width: min(100% - 16px, 1050px);
+        padding-top: 8px;
       }
 
       .hero {
-        padding: 25px 20px;
-        border-radius: 22px;
+        padding: 25px 18px;
+        border-radius: 25px;
       }
 
-      .hero::after {
-        left: 8px;
-        top: 12px;
+      .hero-emoji {
+        left: 6px;
+        top: 15px;
         font-size: 68px;
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      .progress-top {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
       }
 
       .checklist-grid {
@@ -317,8 +707,17 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .toolbar .button:last-child {
+      .button-print {
         grid-column: 1 / -1;
+      }
+
+      .category {
+        padding: 16px;
+        border-radius: 22px;
+      }
+
+      .background-shape {
+        display: none;
       }
     }
 
@@ -329,7 +728,16 @@
         background: white;
       }
 
-      .page-container {
+      .background-shape,
+      .toolbar,
+      .stars,
+      .encouragement,
+      .footer-note,
+      .completion-message {
+        display: none !important;
+      }
+
+      .page {
         width: 100%;
         padding: 0;
       }
@@ -337,17 +745,13 @@
       .hero {
         color: black;
         border: 2px solid black;
-        border-radius: 10px;
         background: white;
         box-shadow: none;
       }
 
-      .hero::after,
-      .progress-container,
-      .toolbar,
-      .footer-note,
-      .completion-message {
-        display: none !important;
+      .hero-emoji,
+      .progress-box {
+        display: none;
       }
 
       .checklist-grid {
@@ -358,13 +762,21 @@
       .category {
         break-inside: avoid;
         padding: 12px;
-        border: 1px solid #999;
-        border-radius: 8px;
+        border: 1px solid #aaa;
+        border-radius: 10px;
         box-shadow: none;
       }
 
       .checklist-item {
-        padding: 7px 2px;
+        min-height: auto;
+        padding: 6px 3px;
+      }
+
+      .custom-checkbox {
+        width: 22px;
+        height: 22px;
+        border-width: 2px;
+        border-radius: 5px;
       }
     }
   </style>
@@ -372,25 +784,42 @@
 
 <body>
 
-  <main class="page-container">
+  <div class="background-shape shape-one">⭐</div>
+  <div class="background-shape shape-two">✏️</div>
+  <div class="background-shape shape-three">🌈</div>
+
+  <main class="page">
 
     <header class="hero">
 
+      <div class="hero-emoji">🎒</div>
+
       <div class="hero-content">
 
-        <h1>ציוד לכיתה ג׳ 🎒</h1>
+        <div class="hero-badge">
+          <span>🌟</span>
+          <span>המשימה שלנו לשנת הלימודים</span>
+        </div>
 
-        <p class="hero-description">
-          צ׳קליסט מסודר לקראת שנת הלימודים.
-          מסמנים כל פריט שכבר קנינו והסימונים נשמרים
-          אוטומטית במכשיר.
+        <h1>מתכוננים לכיתה ג׳!</h1>
+
+        <p class="hero-text">
+          מסמנים כל פריט שכבר קנינו,
+          אוספים כוכבים ומתקרבים לתיק המושלם
+          ליום הראשון בבית הספר.
         </p>
 
-        <div class="progress-container">
+        <div class="progress-box">
 
-          <div class="progress-header">
-            <span>התקדמות ברכישת הציוד</span>
-            <span id="progressText">0 מתוך 0</span>
+          <div class="progress-top">
+            <span>כמה כבר הכנו?</span>
+
+            <span
+              class="progress-result"
+              id="progressText"
+            >
+              0 מתוך 0
+            </span>
           </div>
 
           <div class="progress-track">
@@ -400,109 +829,174 @@
             ></div>
           </div>
 
+          <div class="stars">
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+            <span class="star">⭐</span>
+          </div>
+
         </div>
 
       </div>
 
     </header>
 
+    <div
+      class="encouragement"
+      id="encouragement"
+    >
+      🚀 מוכנים להתחיל? סמנו את הפריט הראשון!
+    </div>
+
     <div class="toolbar">
 
       <button
         type="button"
-        class="button button-primary"
+        class="button button-check-all"
         id="checkAllButton"
       >
-        ✓ סמן הכול
+        ✅ כבר קנינו הכול
       </button>
 
       <button
         type="button"
-        class="button button-secondary"
+        class="button button-reset"
         id="resetButton"
       >
-        ↻ איפוס הרשימה
+        🔄 מתחילים מחדש
       </button>
 
       <button
         type="button"
-        class="button button-secondary"
+        class="button button-print"
         id="printButton"
       >
-        🖨️ הדפסה / שמירה כ־PDF
+        🖨️ מדפיסים את הרשימה
       </button>
 
     </div>
 
-    <!-- כל הקטגוריות מוצגות מראש -->
-
-    <div class="checklist-grid" id="checklist">
+    <div
+      class="checklist-grid"
+      id="checklist"
+    >
 
       <!-- כלי כתיבה -->
 
-      <section class="category">
+      <section class="category purple-category">
 
-        <h2 class="category-title">
-          <span>✏️</span>
-          כלי כתיבה
-          <span class="category-count">5 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">✏️</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              כלי כתיבה
+            </h2>
+
+            <p class="category-subtitle">
+              כל מה שצריך לקלמר
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>חבילת 12 עפרונות</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            חבילת 12 עפרונות
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>3 מחקים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            3 מחקים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>מחדד עם מיכל</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            מחדד עם מיכל
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>קלמר</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            קלמר
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>מדבקות שם</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            מדבקות שם
+          </span>
         </label>
 
       </section>
 
       <!-- סרגלים -->
 
-      <section class="category">
+      <section class="category blue-category">
 
-        <h2 class="category-title">
-          <span>📐</span>
-          סרגלים וחשבון
-          <span class="category-count">4 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">📐</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              סרגלים וחשבון
+            </h2>
+
+            <p class="category-subtitle">
+              מודדים, מציירים ומחשבים
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>סרגל קשיח 15 ס״מ</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            סרגל קשיח 15 ס״מ
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>סרגל קשיח 30 ס״מ</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            סרגל קשיח 30 ס״מ
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>סט משולשים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            סט משולשים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
             2 מחברות חשבון בגודל A4,
             ספירלה, נושא אחד
           </span>
@@ -512,137 +1006,239 @@
 
       <!-- לוח מחיק -->
 
-      <section class="category">
+      <section class="category cyan-category">
 
-        <h2 class="category-title">
-          <span>🧽</span>
-          לוח מחיק
-          <span class="category-count">3 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">🧽</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              לוח מחיק
+            </h2>
+
+            <p class="category-subtitle">
+              כותבים, מוחקים ומנסים שוב
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>טוש מחיק כחול</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            טוש מחיק כחול
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>טוש מחיק אדום</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            טוש מחיק אדום
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>לוח מחיק קטן בגודל A4</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            לוח מחיק קטן בגודל A4
+          </span>
         </label>
 
       </section>
 
       <!-- ציור -->
 
-      <section class="category">
+      <section class="category pink-category">
 
-        <h2 class="category-title">
-          <span>🎨</span>
-          ציור והדגשה
-          <span class="category-count">4 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">🎨</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              ציור וצבעים
+            </h2>
+
+            <p class="category-subtitle">
+              מוסיפים צבע לכל משימה
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>סט טושים צבעוניים טובים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            סט טושים צבעוניים טובים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>4 מדגשים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            4 מדגשים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>סט עפרונות צבעוניים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            סט עפרונות צבעוניים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>2 מחברות ציור חלקות, 40 דף</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            2 מחברות ציור חלקות, 40 דף
+          </span>
         </label>
 
       </section>
 
       <!-- תיקיות -->
 
-      <section class="category">
+      <section class="category orange-category">
 
-        <h2 class="category-title">
-          <span>📁</span>
-          תיקיות ואחסון
-          <span class="category-count">4 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">📁</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              תיקיות ואחסון
+            </h2>
+
+            <p class="category-subtitle">
+              שומרים שהכול יהיה מסודר
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>5 תיקי הגשה עם חזית שקופה</span>
-        </label>
-
-        <label class="checklist-item">
-          <input type="checkbox">
-          <span>20 שקיות ניילון עבות עם חורים</span>
-        </label>
-
-        <label class="checklist-item">
-          <input type="checkbox">
-          <span>
-            משולש פלסטיק קשיח לאחסון חוברות
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            5 תיקי הגשה עם חזית שקופה
           </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>תיקיית פלסטיק עם גומי</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            20 שקיות ניילון עבות עם חורים
+          </span>
+        </label>
+
+        <label class="checklist-item">
+          <input type="checkbox">
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            משולש פלסטיק קשיח
+            לאחסון חוברות
+          </span>
+        </label>
+
+        <label class="checklist-item">
+          <input type="checkbox">
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            תיקיית פלסטיק עם גומי
+          </span>
         </label>
 
       </section>
 
       <!-- יצירה -->
 
-      <section class="category">
+      <section class="category green-category">
 
-        <h2 class="category-title">
-          <span>✂️</span>
-          יצירה וטכנולוגיה
-          <span class="category-count">3 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">✂️</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              יצירה וטכנולוגיה
+            </h2>
+
+            <p class="category-subtitle">
+              גוזרים, מדביקים ויוצרים
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>מספריים</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            מספריים
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>2 דבק סטיק UHU גדול</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            2 דבק סטיק UHU גדול
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>דיסק און קי — חובה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            דיסק און קי — חובה
+          </span>
         </label>
 
       </section>
 
       <!-- מחברות -->
 
-      <section class="category">
+      <section class="category red-category">
 
-        <h2 class="category-title">
-          <span>📒</span>
-          מחברות ועטיפות
-          <span class="category-count">8 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">📒</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              מחברות ועטיפות
+            </h2>
+
+            <p class="category-subtitle">
+              מחברת צבעונית לכל מקצוע
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
             8 מחברות 40 דף,
             14 שורות, חומות פשוטות
           </span>
@@ -650,57 +1246,88 @@
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>
-            עטיפות בצבעים:
-            לבן, צהוב, אדום, ירוק, כחול ושקוף
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה לבנה
           </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>מחברת אנגלית, 40 דף</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה צהובה
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>עטיפה לבנה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה אדומה
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>עטיפה צהובה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה ירוקה
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>עטיפה אדומה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה כחולה
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>עטיפה ירוקה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            עטיפה שקופה
+          </span>
         </label>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>עטיפה כחולה ושקופה</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            מחברת אנגלית, 40 דף
+          </span>
         </label>
 
       </section>
 
       <!-- ציוד נוסף -->
 
-      <section class="category">
+      <section class="category yellow-category">
 
-        <h2 class="category-title">
-          <span>🧢</span>
-          ציוד נוסף
-          <span class="category-count">2 פריטים</span>
-        </h2>
+        <div class="category-header">
+
+          <div class="category-icon">🧢</div>
+
+          <div class="category-title-box">
+            <h2 class="category-title">
+              ציוד נוסף
+            </h2>
+
+            <p class="category-subtitle">
+              הדברים האחרונים לפני שמתחילים
+            </p>
+          </div>
+
+        </div>
+
+        <div class="category-progress"></div>
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
             תיק בד לנשיאת ציוד,
             מסומן בשם מלא
           </span>
@@ -708,29 +1335,37 @@
 
         <label class="checklist-item">
           <input type="checkbox">
-          <span>כובע</span>
+          <span class="custom-checkbox"></span>
+          <span class="item-text">
+            כובע
+          </span>
         </label>
 
       </section>
 
     </div>
 
-    <div
+    <section
       class="completion-message"
       id="completionMessage"
     >
-      🎉 הכול מוכן! סיימתם לקנות את כל הציוד לכיתה ג׳.
-    </div>
+      <h2>🎉 כל הכבוד! הכול מוכן!</h2>
+
+      <p>
+        התיק מוכן, הקלמר מלא ואפשר להתחיל
+        את כיתה ג׳ עם חיוך גדול.
+      </p>
+    </section>
 
     <p class="footer-note">
-      הסימונים נשמרים אוטומטית בדפדפן,
+      ⭐ הסימונים נשמרים אוטומטית במכשיר,
       גם לאחר שסוגרים את האתר.
     </p>
 
   </main>
 
   <script>
-    const storageKey = "grade-3-checklist-v2";
+    const storageKey = "grade-3-kids-checklist-v1";
 
     const checkboxes = Array.from(
       document.querySelectorAll(
@@ -738,11 +1373,18 @@
       )
     );
 
+    const categories = Array.from(
+      document.querySelectorAll(".category")
+    );
+
     const progressText =
       document.getElementById("progressText");
 
     const progressBar =
       document.getElementById("progressBar");
+
+    const encouragement =
+      document.getElementById("encouragement");
 
     const completionMessage =
       document.getElementById("completionMessage");
@@ -756,10 +1398,12 @@
     const printButton =
       document.getElementById("printButton");
 
+    const stars = Array.from(
+      document.querySelectorAll(".star")
+    );
 
-    /*
-      טעינת הסימונים שנשמרו
-    */
+    let celebrationWasShown = false;
+
 
     function loadChecklist() {
       let savedState = [];
@@ -774,17 +1418,12 @@
 
       checkboxes.forEach(function (checkbox, index) {
         checkbox.checked = Boolean(savedState[index]);
-
         updateItemAppearance(checkbox);
       });
 
-      updateProgress();
+      updateEverything(false);
     }
 
-
-    /*
-      שמירת מצב הצ'קליסט
-    */
 
     function saveChecklist() {
       const currentState = checkboxes.map(
@@ -800,10 +1439,6 @@
     }
 
 
-    /*
-      שינוי עיצוב של פריט מסומן
-    */
-
     function updateItemAppearance(checkbox) {
       const item = checkbox.closest(".checklist-item");
 
@@ -814,46 +1449,189 @@
     }
 
 
-    /*
-      עדכון פס ההתקדמות
-    */
+    function updateCategoryProgress() {
+      categories.forEach(function (category) {
+        const categoryCheckboxes = Array.from(
+          category.querySelectorAll(
+            'input[type="checkbox"]'
+          )
+        );
 
-    function updateProgress() {
-      const completedItems = checkboxes.filter(
+        const completed = categoryCheckboxes.filter(
+          function (checkbox) {
+            return checkbox.checked;
+          }
+        ).length;
+
+        const total = categoryCheckboxes.length;
+
+        const progressLabel =
+          category.querySelector(
+            ".category-progress"
+          );
+
+        if (completed === total) {
+          progressLabel.textContent =
+            "🌟 הקטגוריה הושלמה!";
+        } else {
+          progressLabel.textContent =
+            completed +
+            " מתוך " +
+            total +
+            " מוכנים";
+        }
+      });
+    }
+
+
+    function updateStars(percentage) {
+      const activeStars = Math.ceil(
+        percentage / 20
+      );
+
+      stars.forEach(function (star, index) {
+        star.classList.toggle(
+          "active",
+          index < activeStars
+        );
+      });
+    }
+
+
+    function updateEncouragement(
+      completed,
+      total,
+      percentage
+    ) {
+      let message = "";
+
+      if (completed === 0) {
+        message =
+          "🚀 מוכנים להתחיל? סמנו את הפריט הראשון!";
+      } else if (percentage < 25) {
+        message =
+          "🌱 התחלה מצוינת! ממשיכים לאסוף ציוד.";
+      } else if (percentage < 50) {
+        message =
+          "👏 כל הכבוד! כבר התקדמנו יפה.";
+      } else if (percentage < 75) {
+        message =
+          "⭐ עברנו את חצי הדרך! אתם אלופים.";
+      } else if (percentage < 100) {
+        message =
+          "🏃 כמעט סיימנו! נשארו רק " +
+          (total - completed) +
+          " פריטים.";
+      } else {
+        message =
+          "🎉 המשימה הושלמה! הכול מוכן לכיתה ג׳.";
+      }
+
+      encouragement.textContent = message;
+    }
+
+
+    function updateEverything(
+      allowCelebration = true
+    ) {
+      const completed = checkboxes.filter(
         function (checkbox) {
           return checkbox.checked;
         }
       ).length;
 
-      const totalItems = checkboxes.length;
+      const total = checkboxes.length;
 
-      const percentage = totalItems
-        ? Math.round(
-            (completedItems / totalItems) * 100
-          )
+      const percentage = total
+        ? Math.round((completed / total) * 100)
         : 0;
 
       progressText.textContent =
-        completedItems +
+        completed +
         " מתוך " +
-        totalItems +
-        " (" +
+        total +
+        " — " +
         percentage +
-        "%)";
+        "%";
 
       progressBar.style.width =
         percentage + "%";
 
-      completionMessage.style.display =
-        completedItems === totalItems
-          ? "block"
-          : "none";
+      updateStars(percentage);
+
+      updateEncouragement(
+        completed,
+        total,
+        percentage
+      );
+
+      updateCategoryProgress();
+
+      const everythingCompleted =
+        completed === total;
+
+      completionMessage.classList.toggle(
+        "show",
+        everythingCompleted
+      );
+
+      if (
+        everythingCompleted &&
+        allowCelebration &&
+        !celebrationWasShown
+      ) {
+        launchConfetti();
+        celebrationWasShown = true;
+      }
+
+      if (!everythingCompleted) {
+        celebrationWasShown = false;
+      }
     }
 
 
-    /*
-      לחיצה על פריט
-    */
+    function launchConfetti() {
+      const colors = [
+        "#7c3aed",
+        "#ec4899",
+        "#3b82f6",
+        "#22c55e",
+        "#facc15",
+        "#fb923c"
+      ];
+
+      for (let index = 0; index < 80; index++) {
+        const piece =
+          document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+        piece.style.background =
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ];
+
+        piece.style.animationDelay =
+          Math.random() * 0.8 + "s";
+
+        piece.style.transform =
+          "rotate(" +
+          Math.random() * 360 +
+          "deg)";
+
+        document.body.appendChild(piece);
+
+        setTimeout(function () {
+          piece.remove();
+        }, 3800);
+      }
+    }
+
 
     checkboxes.forEach(function (checkbox) {
       checkbox.addEventListener(
@@ -861,15 +1639,11 @@
         function () {
           updateItemAppearance(checkbox);
           saveChecklist();
-          updateProgress();
+          updateEverything();
         }
       );
     });
 
-
-    /*
-      סימון כל הפריטים
-    */
 
     checkAllButton.addEventListener(
       "click",
@@ -880,20 +1654,16 @@
         });
 
         saveChecklist();
-        updateProgress();
+        updateEverything();
       }
     );
 
-
-    /*
-      איפוס הרשימה
-    */
 
     resetButton.addEventListener(
       "click",
       function () {
         const shouldReset = confirm(
-          "האם לאפס את כל הסימונים ברשימה?"
+          "בטוחים שרוצים למחוק את כל הסימונים?"
         );
 
         if (!shouldReset) {
@@ -905,15 +1675,13 @@
           updateItemAppearance(checkbox);
         });
 
+        celebrationWasShown = false;
+
         saveChecklist();
-        updateProgress();
+        updateEverything(false);
       }
     );
 
-
-    /*
-      הדפסה או שמירה כ-PDF
-    */
 
     printButton.addEventListener(
       "click",
@@ -922,10 +1690,6 @@
       }
     );
 
-
-    /*
-      הפעלת האתר
-    */
 
     loadChecklist();
   </script>
