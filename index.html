@@ -209,13 +209,6 @@
   .contact-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .role-empty{font-size:12.5px;color:#aab8c2;font-style:italic;}
 
-  .toast{
-    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(8px);
-    background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;border-radius:999px;
-    opacity:0;pointer-events:none;transition:all .2s ease;z-index:100;box-shadow:0 10px 24px rgba(0,0,0,.25);
-  }
-  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-
   .empty-state{text-align:center;padding:60px 20px;color:var(--ink-soft);}
   .empty-state .big{font-family:'Rubik',sans-serif;font-size:20px;color:var(--blue-2);margin-bottom:6px;}
   .empty-state button{margin-top:14px;background:var(--blue);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;}
@@ -256,7 +249,7 @@
     </div>
     <div class="masthead-text">
       <h1>מבצע "אבי בחופש"</h1>
-      <p>מי מגבה איפה, ואיך יוצרים איתם קשר</p>
+      <p>מי מגבה איפה ולמה הוא הסכים לזה?</p>
       <span class="tag">✈ חיפוש לפי מגבה · מתאם · מחלקה · משרד</span>
     </div>
   </div>
@@ -284,7 +277,6 @@
 </main>
 
 <footer>רשימת הגיבויים האישית של אבי כהן לזמן חופשה</footer>
-<div class="toast" id="toast"></div>
 
 <script>
 const DATA = [{"office": "החוץ", "department": "משקו\"ף", "coordinator_name": "אור ניסים", "coordinator_email": "or.nissim@mfa.gov.il", "coordinator_phone": "055-6440407", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "משקו\"ף", "coordinator_name": "שירן טל", "coordinator_email": "Shiran.Tal@mfa.gov.il", "coordinator_phone": "050-3043444", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת השר", "coordinator_name": "אורית משה", "coordinator_email": "orit@mfa.gov.il", "coordinator_phone": "050-6203601", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת סגנית השר", "coordinator_name": "קרן כהן גת", "coordinator_email": "Keren.Cohen-Gat@mfa.gov.il", "coordinator_phone": "050-6203415", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת מנכ\"ל ותיאום", "coordinator_name": "נטלי דדון", "coordinator_email": "nataly.dadon@mfa.gov.il", "coordinator_phone": "052-5374352", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "מדיני", "coordinator_name": "רוני יוחאי", "coordinator_email": "Roni.yohai@mfa.gov.il", "coordinator_phone": "058-4226278", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "קמ\"א אפריקה", "coordinator_name": "הלל אלחיאני", "coordinator_email": "Hallel.Elhayani@mfa.gov.il", "coordinator_phone": "053-5270922", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "כספים", "coordinator_name": "מוריה גולה", "coordinator_email": "moriya.gola@mfa.gov.il", "coordinator_phone": "050-8996111", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "בטמ\"ח", "coordinator_name": "רומי שניאור", "coordinator_email": "romi.shneor@mfa.gov.il", "coordinator_phone": "050-6203772", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "בטמ\"ח", "coordinator_name": "יעל בן חמו", "coordinator_email": "Yael.Benhamo@mfa.gov.il", "coordinator_phone": "050-9191344", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "קב\"ט", "coordinator_name": "שובל פרדה", "coordinator_email": "shoval.farada@mfa.gov.il", "coordinator_phone": "054-5768531", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "מינהל", "coordinator_name": "רננה כהן", "coordinator_email": "Renana.Cohen@mfa.gov.il", "coordinator_phone": "053-4280435", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "אסטרטגי", "coordinator_name": "ליאם גליסקו", "coordinator_email": "liem.glisko@mfa.gov.il", "coordinator_phone": "055-6661067", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "צפ\"א", "coordinator_name": "אגם גביע", "coordinator_email": "agam.gavia@mfa.gov.il", "coordinator_phone": "053-9629881", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "אירופה", "coordinator_name": "נעמה שקלים", "coordinator_email": "Naama.Shkalim@mfa.gov.il", "coordinator_phone": "054-2454256", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אירופה", "coordinator_name": "אוריה מטטוב", "coordinator_email": "oriya.matatov@mfa.gov.il", "coordinator_phone": "050-2543930", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "מזרח תיכון", "coordinator_name": "אגם קבילו", "coordinator_email": "agam.kabilo@mfa.gov.il", "coordinator_phone": "054-4716090", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אירואסיה", "coordinator_name": "אליה בן אוזיליו", "coordinator_email": "eliya@benoziliyo@mfa.gov.il", "coordinator_phone": "052-6651004", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אמל\"ט", "coordinator_name": "ליז לחאם", "coordinator_email": "liz.laham@mfa.gov.il", "coordinator_phone": "058-7592272", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אפריקה", "coordinator_name": "נאוה סטיל", "coordinator_email": "Nava.Steele@mfa.gov.il", "coordinator_phone": "052-3875602", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "נציגות מדריד", "coordinator_name": "Elena Chocrón Bendahan", "coordinator_email": "adm-sec@madrid.mfa.gov.il", "coordinator_phone": "34917829506", "approver_name": "שני בוזגלו", "approver_email": "consul@madrid.mfa.gov.il", "approver_phone": "34629337576", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "החוץ", "department": "נציגות מדריד", "coordinator_name": "Mercedes Benzaquén Chocrón", "coordinator_email": "administration-sec@madrid.mfa.gov.il", "coordinator_phone": "34917829530", "approver_name": "שני בוזגלו", "approver_email": "consul@madrid.mfa.gov.il", "approver_phone": "34629337576", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "החוץ", "department": "545", "coordinator_name": "אנה שטיינגרט", "coordinator_email": "Dcm@atlanta.mfa.gov.il", "coordinator_phone": "058-7822220", "approver_name": "רועי אנדה", "approver_email": "cao@atlanta.mfa.gov.il", "approver_phone": "050-6203409", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "בית הנשיא", "department": null, "coordinator_name": "תומר רייכמן", "coordinator_email": "tomer@president.gov.il", "coordinator_phone": "052-2211086", "approver_name": "מיקי אושיצקי", "approver_email": "mickeyo@president.gov.il", "approver_phone": "050-6208211", "collector_name": "גיא בן ארי", "collector_email": "guy.ba@amsalem.com"}, {"office": "נט\"ע", "department": null, "coordinator_name": "יובל סיון", "coordinator_email": "yuvals@nta.co.il", "coordinator_phone": "052-6756907", "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "גיא בן ארי", "collector_email": "guy.ba@amsalem.com"}, {"office": "יד ושם", "department": null, "coordinator_name": "אסנת שגיא", "coordinator_email": "osnat.sagi@yadvashem.org.il", "coordinator_phone": "050-3007288", "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "גילי כנר", "collector_email": "giladk@amsalem.com"}, {"office": "פרטיים", "department": null, "coordinator_name": null, "coordinator_email": null, "coordinator_phone": null, "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "אולגה שפט", "collector_email": "olga@amsalem.com"}]
@@ -304,10 +296,7 @@ const searchInput = document.getElementById('search');
 const clearBtn = document.getElementById('clearBtn');
 const resultMeta = document.getElementById('resultMeta');
 const emptyState = document.getElementById('emptyState');
-const toastEl = document.getElementById('toast');
-
 const offices = [...new Set(DATA.map(r => r.office).filter(Boolean))];
-let toastTimer = null;
 
 function esc(s){
   if(s===null || s===undefined) return '';
@@ -330,34 +319,26 @@ function matches(rec, q){
   return fields.some(f => f && String(f).toLowerCase().includes(q));
 }
 
-function showToast(msg){
-  toastEl.textContent = msg;
-  toastEl.classList.add('show');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1500);
+function openGmail(email){
+  const url = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(email);
+  const w = 640, h = 680;
+  const left = Math.max(0, (screen.width - w) / 2);
+  const top = Math.max(0, (screen.height - h) / 2);
+  window.open(url, 'gmailCompose', `width=${w},height=${h},left=${left},top=${top},noopener,noreferrer`);
 }
 
-function copyValue(val){
-  const done = () => showToast('הועתק: ' + val);
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(val).then(done).catch(() => fallbackCopy(val, done));
-  }else{
-    fallbackCopy(val, done);
-  }
-}
-function fallbackCopy(val, cb){
-  const ta = document.createElement('textarea');
-  ta.value = val; ta.style.position='fixed'; ta.style.opacity='0';
-  document.body.appendChild(ta); ta.select();
-  try{ document.execCommand('copy'); cb(); }catch(e){}
-  document.body.removeChild(ta);
+function openWhatsApp(phone){
+  let digits = String(phone).replace(/\D/g, '');
+  if(digits.startsWith('0')) digits = '972' + digits.slice(1);
+  window.open('https://wa.me/' + digits, '_blank', 'noopener,noreferrer');
 }
 
 function contactBtn(kind, value, icon, q){
   if(!value) return '';
   const isEmail = kind === 'email';
-  const dataAttr = `data-copy="${esc(value)}"`;
-  return `<button type="button" class="contact-btn" ${dataAttr} title="${isEmail?'העתק אימייל':'העתק טלפון'}">${icon}<span>${highlight(value,q)}</span></button>`;
+  const dataAttr = isEmail ? `data-gmail="${esc(value)}"` : `data-whatsapp="${esc(value)}"`;
+  const title = isEmail ? 'פתח מייל ב-Gmail' : 'פתח שיחה ב-WhatsApp';
+  return `<button type="button" class="contact-btn" ${dataAttr} title="${title}">${icon}<span>${highlight(value,q)}</span></button>`;
 }
 
 function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
@@ -440,7 +421,11 @@ document.getElementById('resetFromEmpty').addEventListener('click', resetAll);
 
 grid.addEventListener('click', (e) => {
   const btn = e.target.closest('.contact-btn');
-  if(btn) copyValue(btn.getAttribute('data-copy'));
+  if(!btn) return;
+  const email = btn.getAttribute('data-gmail');
+  const phone = btn.getAttribute('data-whatsapp');
+  if(email) openGmail(email);
+  else if(phone) openWhatsApp(phone);
 });
 
 document.addEventListener('keydown', (e) => {
