@@ -2,342 +2,262 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>מי מגבה אותי בחופשה</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>מבצע אבי בחופש</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#16233c;
-    --navy-2:#1f3556;
-    --paper:#f6f3ec;
-    --paper-2:#efe9db;
-    --ink:#1b2030;
-    --ink-soft:#5b6272;
-    --brass:#a97e3f;
-    --brass-light:#c99a54;
-    --line:#d8d1bd;
-    --white:#fffdf8;
-    --good:#4b7a5e;
+    --sky:#eaf7ff;
+    --sky-2:#cfeeff;
+    --sky-3:#9ed8f7;
+    --blue:#1367a8;
+    --blue-2:#0d4f84;
+    --ink:#17324d;
+    --ink-soft:#6b7f91;
+    --line:#cfe1ec;
+    --white:#ffffff;
+    --cloud:#f8fcff;
+    --accent:#ffb84d;
+    --good:#2f8f67;
   }
   *{box-sizing:border-box;}
-  body{margin:0;}
   html{scroll-behavior:smooth;}
   body{
-    background:
-      radial-gradient(1200px 700px at 15% -10%, #1c2f4d 0%, transparent 55%),
-      var(--paper);
+    margin:0;
     color:var(--ink);
-    font-family:'Assistant', sans-serif;
+    font-family:'Heebo',sans-serif;
     min-height:100vh;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,255,255,.95) 0 7%, transparent 8%),
+      radial-gradient(circle at 22% 13%, rgba(255,255,255,.75) 0 5%, transparent 6%),
+      linear-gradient(180deg,#dff4ff 0%,#f7fbfd 38%,#eef7fb 100%);
+    position:relative;
   }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    opacity:.45;
+    background-image:
+      radial-gradient(circle at 80% 14%, rgba(255,255,255,.9) 0 4%, transparent 4.5%),
+      radial-gradient(circle at 84% 16%, rgba(255,255,255,.75) 0 3%, transparent 3.5%),
+      radial-gradient(circle at 13% 70%, rgba(255,255,255,.65) 0 4%, transparent 4.5%);
+  }
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  :focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:6px;}
 
-  /* ===== Header / masthead ===== */
   header{
-    background:linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-    color:var(--paper);
-    padding:38px 24px 30px;
+    color:#fff;
+    padding:36px 24px 78px;
     position:relative;
     overflow:hidden;
-    border-bottom:6px solid var(--brass);
+    background:
+      linear-gradient(180deg,rgba(8,79,132,.92),rgba(34,142,203,.84)),
+      linear-gradient(135deg,#0d5f9f,#5fc2ef);
   }
   header::before{
-    content:"";
-    position:absolute; inset:0;
-    background-image:
-      repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, transparent 2px 26px);
-    pointer-events:none;
+    content:"✈";
+    position:absolute;
+    left:8%; top:16px;
+    font-size:88px;
+    opacity:.10;
+    transform:rotate(-12deg);
   }
+  header::after{
+    content:"";
+    position:absolute;
+    left:-5%; right:-5%; bottom:-48px;
+    height:100px;
+    background:
+      radial-gradient(ellipse at 10% 40%,#fff 0 33%,transparent 34%),
+      radial-gradient(ellipse at 28% 55%,#fff 0 30%,transparent 31%),
+      radial-gradient(ellipse at 46% 45%,#fff 0 36%,transparent 37%),
+      radial-gradient(ellipse at 67% 57%,#fff 0 30%,transparent 31%),
+      radial-gradient(ellipse at 84% 42%,#fff 0 36%,transparent 37%);
+    opacity:.95;
+  }
+  .cloud{position:absolute;background:rgba(255,255,255,.88);border-radius:999px;filter:drop-shadow(0 8px 18px rgba(42,123,174,.08));z-index:1;}
+  .cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;}
+  .cloud::before{width:44%;height:145%;right:18%;bottom:0;}
+  .cloud::after{width:34%;height:110%;left:18%;bottom:0;}
+  .cloud.c1{width:150px;height:34px;right:6%;top:22px;opacity:.72;}
+  .cloud.c2{width:105px;height:25px;left:19%;top:80px;opacity:.5;}
+  .cloud.c3{width:180px;height:38px;left:-30px;bottom:28px;opacity:.66;}
+
   .masthead{
     max-width:980px;
     margin:0 auto;
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:18px;
     position:relative;
+    z-index:2;
   }
   .seal{
     flex:0 0 auto;
-    width:58px;height:58px;
-    border-radius:50%;
-    border:2px solid var(--brass-light);
+    width:60px;height:60px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.7);
     display:flex;align-items:center;justify-content:center;
-    position:relative;
-    background:radial-gradient(circle at 35% 30%, #24406a, #16233c 70%);
+    background:rgba(255,255,255,.16);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 30px rgba(4,51,85,.18);
+    backdrop-filter:blur(8px);
   }
-  .seal::before{
-    content:"";
-    position:absolute; inset:6px;
-    border-radius:50%;
-    border:1px dashed rgba(201,154,84,.6);
-  }
-  .seal span{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:900;
-    font-size:19px;
-    color:var(--brass-light);
-    letter-spacing:.5px;
-  }
+  .seal svg{width:26px;height:26px;transform:rotate(-18deg);}
   .masthead-text h1{
-    font-family:'Frank Ruhl Libre', serif;
+    font-family:'Rubik',sans-serif;
     font-weight:900;
-    font-size:clamp(24px, 4vw, 34px);
+    font-size:clamp(24px,4vw,34px);
     margin:0 0 4px;
-    letter-spacing:.3px;
+    letter-spacing:-.2px;
+    line-height:1.2;
   }
-  .masthead-text p{
-    margin:0;
-    color:#c7cede;
-    font-size:14.5px;
-    letter-spacing:.2px;
-  }
+  .masthead-text p{margin:0;color:#eaf7ff;font-size:15.5px;line-height:1.5;font-weight:500;}
   .masthead-text .tag{
     display:inline-block;
     margin-top:10px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11.5px;
-    letter-spacing:1.2px;
-    color:var(--brass-light);
-    border:1px solid rgba(201,154,84,.45);
-    border-radius:20px;
-    padding:4px 12px;
+    font-size:11px;
+    letter-spacing:.5px;
+    color:#fff;
+    border:1px solid rgba(255,255,255,.45);
+    background:rgba(255,255,255,.12);
+    border-radius:999px;
+    padding:5px 12px;
   }
 
-  /* ===== Search zone ===== */
   .search-zone{
     max-width:980px;
-    margin:-24px auto 0;
+    margin:-36px auto 0;
     padding:0 24px;
-    position:relative;
-    z-index:5;
+    position:sticky;
+    top:10px;
+    z-index:30;
   }
   .search-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:14px;
-    box-shadow:0 16px 34px -18px rgba(22,35,60,.35), 0 2px 6px rgba(22,35,60,.06);
-    padding:18px 20px 16px;
+    background:rgba(255,255,255,.97);
+    border:1px solid rgba(190,220,235,.9);
+    border-radius:20px;
+    box-shadow:0 20px 45px -24px rgba(13,79,132,.45),0 4px 14px rgba(32,103,149,.1);
+    padding:16px 18px 14px;
+    backdrop-filter:blur(12px);
   }
-  .search-row{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    border-bottom:1px solid var(--line);
-    padding-bottom:14px;
-  }
-  .search-row svg{flex:0 0 auto; opacity:.55;}
-  #search{
-    flex:1;
-    border:none;
-    outline:none;
-    background:transparent;
-    font-family:'Assistant', sans-serif;
-    font-size:18px;
-    font-weight:600;
-    color:var(--ink);
-  }
-  #search::placeholder{color:#9aa0ae; font-weight:500;}
-  .clear-btn{
-    background:none;border:none;cursor:pointer;
-    color:var(--ink-soft);
-    font-size:13px;
-    font-family:'Assistant',sans-serif;
-    padding:4px 8px;
-    display:none;
-  }
+  .search-row{display:flex;align-items:center;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:12px;}
+  .search-row svg{flex:0 0 auto;color:var(--blue);opacity:.75;}
+  #search{flex:1;border:none;outline:none;background:transparent;font-family:'Heebo',sans-serif;font-size:17px;font-weight:600;color:var(--ink);min-width:0;}
+  #search::placeholder{color:#94a8b8;font-weight:500;}
+  #search::-webkit-search-cancel-button{display:none;}
+  .clear-btn{background:#eef7fc;border:none;cursor:pointer;color:var(--blue-2);font-size:13px;font-family:'Heebo',sans-serif;padding:7px 12px;border-radius:999px;display:none;min-height:32px;}
   .clear-btn.show{display:inline-block;}
 
-  .filter-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-top:12px;
-  }
-  .filter-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    color:var(--ink-soft);
-    align-self:center;
-    margin-left:4px;
-  }
-  .chip{
-    border:1px solid var(--line);
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Assistant', sans-serif;
-    font-size:13.5px;
-    font-weight:600;
-    padding:6px 14px;
-    border-radius:20px;
-    cursor:pointer;
-    transition:all .15s ease;
-  }
-  .chip:hover{border-color:var(--brass);}
-  .chip.active{
-    background:var(--navy);
-    border-color:var(--navy);
-    color:var(--white);
-  }
 
-  /* ===== Results ===== */
-  main{
-    max-width:980px;
-    margin:0 auto;
-    padding:26px 24px 70px;
-  }
-  .result-meta{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px;
-    color:var(--ink-soft);
-    margin:2px 4px 16px;
-  }
-  .result-meta b{color:var(--navy);}
+  main{max-width:980px;margin:0 auto;padding:22px 24px 70px;position:relative;z-index:2;}
+  .result-meta{font-size:12.5px;color:var(--ink-soft);margin:2px 4px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+  .result-meta b{color:var(--blue-2);}
+  .reset-all{background:none;border:none;color:var(--blue);font-size:12.5px;font-weight:700;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:2px;}
 
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
-    gap:16px;
-  }
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
 
-  /* index card */
+  .group-header{
+    grid-column:1/-1;
+    display:flex;align-items:center;gap:9px;
+    padding:16px 2px 2px;
+    font-family:'Rubik',sans-serif;font-weight:800;font-size:14.5px;color:var(--blue-2);
+  }
+  .group-header:first-child{padding-top:2px;}
+  .group-header .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+  .group-header .count{font-family:'Heebo',sans-serif;font-weight:700;font-size:11.5px;color:var(--ink-soft);background:#eef6fb;border-radius:999px;padding:2px 9px;}
+
   .card{
-    background:var(--white);
+    background:rgba(255,255,255,.97);
     border:1px solid var(--line);
-    border-radius:4px 4px 10px 10px;
+    border-radius:17px;
     position:relative;
-    box-shadow:0 10px 22px -16px rgba(22,35,60,.4);
+    box-shadow:0 14px 28px -20px rgba(13,79,132,.45);
     overflow:hidden;
-    animation:rise .35s ease both;
+    animation:rise .3s ease both;
   }
-  @keyframes rise{
-    from{opacity:0; transform:translateY(8px);}
-    to{opacity:1; transform:translateY(0);}
-  }
+  @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
   .card::before{
-    /* top tab of index card */
     content:"";
     position:absolute;
-    top:0; right:20px;
-    width:64px; height:9px;
-    background:var(--brass);
-    border-radius:0 0 4px 4px;
+    top:0; right:0; left:0;
+    height:4px;
+    background:linear-gradient(90deg,var(--sky-3),var(--blue),var(--accent));
   }
-  .card-head{
-    padding:22px 18px 14px;
-    border-bottom:1px dashed var(--line);
+  .card-head{padding:16px 16px 12px;border-bottom:1px dashed var(--line);background:linear-gradient(180deg,#fbfdff,#fff);}
+  .office-label{font-size:10.5px;letter-spacing:.5px;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:3px;font-weight:700;}
+  .dept-title{font-family:'Rubik',sans-serif;font-weight:700;font-size:18px;color:var(--blue-2);margin:0;line-height:1.25;}
+  .dept-title.generic{color:var(--ink-soft);font-weight:500;font-size:14px;font-family:'Heebo',sans-serif;}
+  .card-body{padding:12px 16px 16px;display:flex;flex-direction:column;gap:11px;}
+  .role-block{display:flex;gap:10px;}
+  .role-icon{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#edf7fc;color:var(--blue);margin-top:1px;}
+  .role-icon svg{width:15px;height:15px;}
+  .role-icon.collector{background:#eaf7f1;color:var(--good);}
+  .role-info{flex:1;min-width:0;}
+  .role-kind{font-size:11px;color:var(--ink-soft);font-weight:700;margin-bottom:1px;}
+  .role-name{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:3px;}
+  .role-contact{display:flex;flex-wrap:wrap;gap:6px;}
+  .contact-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    font-size:12px;color:var(--blue-2);background:#f5fbff;border:1px solid var(--line);
+    border-radius:8px;padding:5px 8px;cursor:pointer;text-decoration:none;
+    max-width:100%;min-height:30px;font-family:'Heebo',sans-serif;
   }
-  .office-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:.6px;
-    color:var(--brass);
-    text-transform:uppercase;
-    display:block;
-    margin-bottom:4px;
-  }
-  .dept-title{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    font-size:20px;
-    color:var(--navy);
-    margin:0;
-    line-height:1.25;
-  }
-  .card-body{
-    padding:14px 18px 18px;
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-  }
-  .role-block{
-    display:flex;
-    gap:10px;
-  }
-  .role-icon{
-    flex:0 0 auto;
-    width:30px; height:30px;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    background:var(--paper-2);
-    color:var(--navy);
-    font-size:14px;
-    margin-top:1px;
-  }
-  .role-icon.collector{background:#e7f0e9; color:var(--good);}
-  .role-info{flex:1; min-width:0;}
-  .role-kind{
-    font-size:11.5px;
-    color:var(--ink-soft);
-    font-weight:700;
-    margin-bottom:1px;
-  }
-  .role-name{
-    font-weight:700;
-    font-size:15px;
-    color:var(--ink);
-    margin-bottom:2px;
-  }
-  .role-contact{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    color:var(--ink-soft);
-    display:flex;
-    flex-direction:column;
-    gap:1px;
-    word-break:break-all;
-  }
-  .role-contact a{color:var(--navy); text-decoration:none;}
-  .role-contact a:hover{text-decoration:underline;}
-  .role-empty{
-    font-size:12.5px;
-    color:#b3b0a5;
-    font-style:italic;
-  }
+  .contact-btn:active{background:var(--sky-2);}
+  .contact-btn svg{flex:0 0 auto;width:12px;height:12px;opacity:.7;}
+  .contact-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .role-empty{font-size:12.5px;color:#aab8c2;font-style:italic;}
 
-  .empty-state{
-    text-align:center;
-    padding:70px 20px;
-    color:var(--ink-soft);
+  .toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(8px);
+    background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;border-radius:999px;
+    opacity:0;pointer-events:none;transition:all .2s ease;z-index:100;box-shadow:0 10px 24px rgba(0,0,0,.25);
   }
-  .empty-state .big{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:22px;
-    color:var(--navy);
-    margin-bottom:8px;
-  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
-  mark{
-    background:rgba(201,154,84,.35);
-    color:inherit;
-    border-radius:2px;
-    padding:0 1px;
-  }
-
-  footer{
-    text-align:center;
-    padding:20px;
-    font-size:12px;
-    color:var(--ink-soft);
-    font-family:'IBM Plex Mono', monospace;
-  }
+  .empty-state{text-align:center;padding:60px 20px;color:var(--ink-soft);}
+  .empty-state .big{font-family:'Rubik',sans-serif;font-size:20px;color:var(--blue-2);margin-bottom:6px;}
+  .empty-state button{margin-top:14px;background:var(--blue);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;}
+  mark{background:rgba(255,184,77,.4);color:inherit;border-radius:3px;padding:0 2px;}
+  footer{text-align:center;padding:18px;font-size:12px;color:var(--ink-soft);}
 
   @media (max-width:520px){
-    .masthead{gap:14px;}
-    .seal{width:46px;height:46px;}
-    .seal span{font-size:15px;}
-    .search-zone{margin-top:-18px;}
+    header{padding:26px 16px 66px;}
+    .masthead{gap:12px;}
+    .seal{width:46px;height:46px;border-radius:14px;}
+    .seal svg{width:21px;height:21px;}
+    .masthead-text h1{font-size:clamp(21px,7vw,27px);}
+    .masthead-text p{font-size:13px;line-height:1.35;}
+    .search-zone{margin-top:-30px;padding:0 12px;top:8px;}
+    .search-card{padding:13px 14px 12px;border-radius:17px;}
+    main{padding-left:12px;padding-right:12px;}
+    .grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001s !important;transition-duration:.001s !important;scroll-behavior:auto !important;}
   }
 </style>
 </head>
 <body>
 
 <header>
+  <div class="cloud c1"></div>
+  <div class="cloud c2"></div>
+  <div class="cloud c3"></div>
   <div class="masthead">
-    <div class="seal"><span>אב</span></div>
+    <div class="seal">
+      <svg viewBox="0 0 64 64" fill="none">
+        <path d="M6 46 Q22 40 30 26" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6" opacity=".7"/>
+        <g transform="translate(32 32) rotate(-38) translate(-32 -32)">
+          <path fill="#fff" d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/>
+        </g>
+      </svg>
+    </div>
     <div class="masthead-text">
-      <h1>מי מגבה אותי בחופשה</h1>
-      <p>אבי כהן · לכל משרד ומחלקה — מי מכסה עבורי כשאני בחופשה</p>
-      <span class="tag">חיפוש לפי מגבה · מתאם · מחלקה · משרד</span>
+      <h1>מבצע "אבי בחופש"</h1>
+      <p>מי מגבה איפה, ואיך יוצרים איתם קשר</p>
+      <span class="tag">✈ חיפוש לפי מגבה · מתאם · מחלקה · משרד</span>
     </div>
   </div>
 </header>
@@ -346,58 +266,48 @@
   <div class="search-card">
     <div class="search-row">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <input type="text" id="search" placeholder="חיפוש לפי מי מגבה אותי, שם מתאם, מחלקה או משרד…" autocomplete="off">
-      <button class="clear-btn" id="clearBtn">נקה</button>
-    </div>
-    <div class="filter-row" id="officeFilters">
-      <span class="filter-label">משרד:</span>
-      <!-- office chips injected by JS -->
+      <label for="search" class="sr-only">חיפוש</label>
+      <input type="search" id="search" placeholder="חיפוש לפי שם, מחלקה או משרד…" autocomplete="off" enterkeyhint="search">
+      <button class="clear-btn" id="clearBtn" type="button">נקה</button>
     </div>
   </div>
 </div>
 
 <main>
-  <div class="result-meta" id="resultMeta"></div>
+  <div class="result-meta" id="resultMeta" aria-live="polite"></div>
   <div class="grid" id="grid"></div>
   <div class="empty-state" id="emptyState" style="display:none;">
     <div class="big">לא נמצאו תוצאות</div>
     <div>נסו לחפש שם, מחלקה או משרד אחר</div>
+    <button id="resetFromEmpty" type="button">נקה את כל הסינון</button>
   </div>
 </main>
 
 <footer>רשימת הגיבויים האישית של אבי כהן לזמן חופשה</footer>
+<div class="toast" id="toast"></div>
 
 <script>
 const DATA = [{"office": "החוץ", "department": "משקו\"ף", "coordinator_name": "אור ניסים", "coordinator_email": "or.nissim@mfa.gov.il", "coordinator_phone": "055-6440407", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "משקו\"ף", "coordinator_name": "שירן טל", "coordinator_email": "Shiran.Tal@mfa.gov.il", "coordinator_phone": "050-3043444", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת השר", "coordinator_name": "אורית משה", "coordinator_email": "orit@mfa.gov.il", "coordinator_phone": "050-6203601", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת סגנית השר", "coordinator_name": "קרן כהן גת", "coordinator_email": "Keren.Cohen-Gat@mfa.gov.il", "coordinator_phone": "050-6203415", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "לשכת מנכ\"ל ותיאום", "coordinator_name": "נטלי דדון", "coordinator_email": "nataly.dadon@mfa.gov.il", "coordinator_phone": "052-5374352", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "מדיני", "coordinator_name": "רוני יוחאי", "coordinator_email": "Roni.yohai@mfa.gov.il", "coordinator_phone": "058-4226278", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "קמ\"א אפריקה", "coordinator_name": "הלל אלחיאני", "coordinator_email": "Hallel.Elhayani@mfa.gov.il", "coordinator_phone": "053-5270922", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "אבירם כהן", "collector_email": "aviramc@amsalem.com"}, {"office": "החוץ", "department": "כספים", "coordinator_name": "מוריה גולה", "coordinator_email": "moriya.gola@mfa.gov.il", "coordinator_phone": "050-8996111", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "בטמ\"ח", "coordinator_name": "רומי שניאור", "coordinator_email": "romi.shneor@mfa.gov.il", "coordinator_phone": "050-6203772", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "בטמ\"ח", "coordinator_name": "יעל בן חמו", "coordinator_email": "Yael.Benhamo@mfa.gov.il", "coordinator_phone": "050-9191344", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "קב\"ט", "coordinator_name": "שובל פרדה", "coordinator_email": "shoval.farada@mfa.gov.il", "coordinator_phone": "054-5768531", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "מינהל", "coordinator_name": "רננה כהן", "coordinator_email": "Renana.Cohen@mfa.gov.il", "coordinator_phone": "053-4280435", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "אסטרטגי", "coordinator_name": "ליאם גליסקו", "coordinator_email": "liem.glisko@mfa.gov.il", "coordinator_phone": "055-6661067", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "צפ\"א", "coordinator_name": "אגם גביע", "coordinator_email": "agam.gavia@mfa.gov.il", "coordinator_phone": "053-9629881", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "יאיר אביזמיל", "collector_email": "yaira@amsalem.com"}, {"office": "החוץ", "department": "אירופה", "coordinator_name": "נעמה שקלים", "coordinator_email": "Naama.Shkalim@mfa.gov.il", "coordinator_phone": "054-2454256", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אירופה", "coordinator_name": "אוריה מטטוב", "coordinator_email": "oriya.matatov@mfa.gov.il", "coordinator_phone": "050-2543930", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "מזרח תיכון", "coordinator_name": "אגם קבילו", "coordinator_email": "agam.kabilo@mfa.gov.il", "coordinator_phone": "054-4716090", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אירואסיה", "coordinator_name": "אליה בן אוזיליו", "coordinator_email": "eliya@benoziliyo@mfa.gov.il", "coordinator_phone": "052-6651004", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אמל\"ט", "coordinator_name": "ליז לחאם", "coordinator_email": "liz.laham@mfa.gov.il", "coordinator_phone": "058-7592272", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "אפריקה", "coordinator_name": "נאוה סטיל", "coordinator_email": "Nava.Steele@mfa.gov.il", "coordinator_phone": "052-3875602", "approver_name": "אודליה יפת", "approver_email": "odelyah.ben-itzack@mfa.gov.il", "approver_phone": "050-6203461", "collector_name": "ליאת פניאן", "collector_email": "liatp@amsalem.com"}, {"office": "החוץ", "department": "נציגות מדריד", "coordinator_name": "Elena Chocrón Bendahan", "coordinator_email": "adm-sec@madrid.mfa.gov.il", "coordinator_phone": "34917829506", "approver_name": "שני בוזגלו", "approver_email": "consul@madrid.mfa.gov.il", "approver_phone": "34629337576", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "החוץ", "department": "נציגות מדריד", "coordinator_name": "Mercedes Benzaquén Chocrón", "coordinator_email": "administration-sec@madrid.mfa.gov.il", "coordinator_phone": "34917829530", "approver_name": "שני בוזגלו", "approver_email": "consul@madrid.mfa.gov.il", "approver_phone": "34629337576", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "החוץ", "department": "545", "coordinator_name": "אנה שטיינגרט", "coordinator_email": "Dcm@atlanta.mfa.gov.il", "coordinator_phone": "058-7822220", "approver_name": "רועי אנדה", "approver_email": "cao@atlanta.mfa.gov.il", "approver_phone": "050-6203409", "collector_name": "אבי דיין", "collector_email": "avid@amsalem.com"}, {"office": "בית הנשיא", "department": null, "coordinator_name": "תומר רייכמן", "coordinator_email": "tomer@president.gov.il", "coordinator_phone": "052-2211086", "approver_name": "מיקי אושיצקי", "approver_email": "mickeyo@president.gov.il", "approver_phone": "050-6208211", "collector_name": "גיא בן ארי", "collector_email": "guy.ba@amsalem.com"}, {"office": "נט\"ע", "department": null, "coordinator_name": "יובל סיון", "coordinator_email": "yuvals@nta.co.il", "coordinator_phone": "052-6756907", "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "גיא בן ארי", "collector_email": "guy.ba@amsalem.com"}, {"office": "יד ושם", "department": null, "coordinator_name": "אסנת שגיא", "coordinator_email": "osnat.sagi@yadvashem.org.il", "coordinator_phone": "050-3007288", "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "גילי כנר", "collector_email": "giladk@amsalem.com"}, {"office": "פרטיים", "department": null, "coordinator_name": null, "coordinator_email": null, "coordinator_phone": null, "approver_name": null, "approver_email": null, "approver_phone": null, "collector_name": "אולגה שפט", "collector_email": "olga@amsalem.com"}]
 ;
+
+const ICON_USER = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg>';
+const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
+const ICON_CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/><path d="M9 12h6M9 16h6"/></svg>';
+const ICON_MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>';
+const ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+
+// Group data by office, then keep original order within an office (which follows department order)
+const grouped = [...DATA].sort((a,b) => DATA.map(r=>r.office).indexOf(a.office) - DATA.map(r=>r.office).indexOf(b.office));
 
 const grid = document.getElementById('grid');
 const searchInput = document.getElementById('search');
 const clearBtn = document.getElementById('clearBtn');
 const resultMeta = document.getElementById('resultMeta');
 const emptyState = document.getElementById('emptyState');
-const officeFiltersEl = document.getElementById('officeFilters');
+const toastEl = document.getElementById('toast');
 
-let activeOffice = null;
-
-// Build office chips
 const offices = [...new Set(DATA.map(r => r.office).filter(Boolean))];
-offices.forEach(off => {
-  const btn = document.createElement('button');
-  btn.className = 'chip';
-  btn.textContent = off;
-  btn.addEventListener('click', () => {
-    activeOffice = (activeOffice === off) ? null : off;
-    render();
-  });
-  officeFiltersEl.appendChild(btn);
-});
-
-function updateChips(){
-  [...officeFiltersEl.querySelectorAll('.chip')].forEach(chip => {
-    chip.classList.toggle('active', chip.textContent === activeOffice);
-  });
-}
+let toastTimer = null;
 
 function esc(s){
   if(s===null || s===undefined) return '';
@@ -420,7 +330,37 @@ function matches(rec, q){
   return fields.some(f => f && String(f).toLowerCase().includes(q));
 }
 
-function roleBlock(kind, iconSvg, name, email, phone, isCollector){
+function showToast(msg){
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 1500);
+}
+
+function copyValue(val){
+  const done = () => showToast('הועתק: ' + val);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(val).then(done).catch(() => fallbackCopy(val, done));
+  }else{
+    fallbackCopy(val, done);
+  }
+}
+function fallbackCopy(val, cb){
+  const ta = document.createElement('textarea');
+  ta.value = val; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); cb(); }catch(e){}
+  document.body.removeChild(ta);
+}
+
+function contactBtn(kind, value, icon, q){
+  if(!value) return '';
+  const isEmail = kind === 'email';
+  const dataAttr = `data-copy="${esc(value)}"`;
+  return `<button type="button" class="contact-btn" ${dataAttr} title="${isEmail?'העתק אימייל':'העתק טלפון'}">${icon}<span>${highlight(value,q)}</span></button>`;
+}
+
+function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
   if(!name && !email && !phone){
     return `<div class="role-block">
       <div class="role-icon${isCollector?' collector':''}">${iconSvg}</div>
@@ -430,57 +370,64 @@ function roleBlock(kind, iconSvg, name, email, phone, isCollector){
       </div>
     </div>`;
   }
-  const q = searchInput.value.trim().toLowerCase();
-  let contact = '';
-  if(email) contact += `<a href="mailto:${esc(email)}">${highlight(email,q)}</a>`;
-  if(phone) contact += `<span>${highlight(phone,q)}</span>`;
   return `<div class="role-block">
     <div class="role-icon${isCollector?' collector':''}">${iconSvg}</div>
     <div class="role-info">
       <div class="role-kind">${kind}</div>
       <div class="role-name">${highlight(name || '—', q)}</div>
-      <div class="role-contact">${contact}</div>
+      <div class="role-contact">
+        ${contactBtn('email', email, ICON_MAIL, q)}
+        ${contactBtn('phone', phone, ICON_PHONE, q)}
+      </div>
     </div>
   </div>`;
 }
 
-const ICON_COORD = '👤';
-const ICON_APPR = '✔';
-const ICON_COLLECT = '📋';
-
 function cardHTML(rec, q){
-  const deptLine = rec.department ? rec.department : rec.office;
+  const hasDept = !!rec.department;
   return `<div class="card">
     <div class="card-head">
       <span class="office-label">${highlight(rec.office, q)}</span>
-      <h3 class="dept-title">${highlight(deptLine, q)}</h3>
+      <h3 class="dept-title${hasDept?'':' generic'}">${hasDept ? highlight(rec.department, q) : 'כללי — ללא חלוקה למחלקות'}</h3>
     </div>
     <div class="card-body">
-      ${roleBlock('מתאם.ת', ICON_COORD, rec.coordinator_name, rec.coordinator_email, rec.coordinator_phone, false)}
-      ${roleBlock('מאשר.ת', ICON_APPR, rec.approver_name, rec.approver_email, rec.approver_phone, false)}
-      ${roleBlock('מי מגבה אותי', ICON_COLLECT, rec.collector_name, rec.collector_email, null, true)}
+      ${roleBlock('מתאם.ת', ICON_USER, rec.coordinator_name, rec.coordinator_email, rec.coordinator_phone, false, q)}
+      ${roleBlock('מאשר.ת', ICON_CHECK, rec.approver_name, rec.approver_email, rec.approver_phone, false, q)}
+      ${roleBlock('מי מגבה אותי', ICON_CLIP, rec.collector_name, rec.collector_email, null, true, q)}
     </div>
   </div>`;
 }
 
 function render(){
-  updateChips();
   const q = searchInput.value.trim().toLowerCase();
   clearBtn.classList.toggle('show', q.length > 0);
 
-  let results = DATA.filter(r => matches(r, q));
-  if(activeOffice){
-    results = results.filter(r => r.office === activeOffice);
-  }
+  let results = grouped.filter(r => matches(r, q));
 
-  grid.innerHTML = results.map(r => cardHTML(r, q)).join('');
+  let html = '';
+  let lastOffice = null;
+  results.forEach(r => {
+    if(r.office !== lastOffice){
+      const cnt = results.filter(x => x.office === r.office).length;
+      html += `<div class="group-header">${esc(r.office)}<span class="line"></span><span class="count">${cnt}</span></div>`;
+      lastOffice = r.office;
+    }
+    html += cardHTML(r, q);
+  });
+  grid.innerHTML = html;
   emptyState.style.display = results.length === 0 ? 'block' : 'none';
 
-  if(q || activeOffice){
-    resultMeta.innerHTML = `נמצאו <b>${results.length}</b> תוצאות מתוך ${DATA.length}`;
-  }else{
-    resultMeta.innerHTML = `סה"כ <b>${DATA.length}</b> רשומות · ${offices.length} משרדים`;
-  }
+  resultMeta.innerHTML = q
+    ? `נמצאו <b>${results.length}</b> תוצאות מתוך ${DATA.length} <button class="reset-all" id="resetAll" type="button">נקה סינון</button>`
+    : `סה"כ <b>${DATA.length}</b> רשומות · ${offices.length} משרדים`;
+
+  const resetAllBtn = document.getElementById('resetAll');
+  if(resetAllBtn) resetAllBtn.addEventListener('click', resetAll);
+}
+
+function resetAll(){
+  searchInput.value = '';
+  render();
 }
 
 searchInput.addEventListener('input', render);
@@ -488,6 +435,23 @@ clearBtn.addEventListener('click', () => {
   searchInput.value = '';
   searchInput.focus();
   render();
+});
+document.getElementById('resetFromEmpty').addEventListener('click', resetAll);
+
+grid.addEventListener('click', (e) => {
+  const btn = e.target.closest('.contact-btn');
+  if(btn) copyValue(btn.getAttribute('data-copy'));
+});
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === '/' && document.activeElement !== searchInput){
+    e.preventDefault();
+    searchInput.focus();
+  }
+  if(e.key === 'Escape' && document.activeElement === searchInput && searchInput.value){
+    searchInput.value = '';
+    render();
+  }
 });
 
 render();
