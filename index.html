@@ -82,11 +82,11 @@
   .seal{
     flex:0 0 auto;
     width:60px;height:60px;
-    border-radius:16px;
-    border:1.5px solid rgba(221,199,161,.5);
+    border-radius:50%;
+    border:1.8px solid rgba(221,199,161,.55);
     display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(160deg, rgba(221,199,161,.18), rgba(191,126,48,.12));
-    box-shadow:inset 0 0 0 1px rgba(221,199,161,.2), inset 0 1px 0 rgba(255,255,255,.15), 0 12px 28px rgba(20,10,4,.3);
+    background:radial-gradient(circle at 35% 30%, rgba(221,199,161,.22), rgba(191,126,48,.1) 70%);
+    box-shadow:inset 0 0 0 1px rgba(191,126,48,.25), inset 0 1px 0 rgba(255,255,255,.15), 0 12px 28px rgba(20,10,4,.32);
   }
   .seal svg{width:27px;height:27px;transform:rotate(-18deg);}
   .masthead-text h1{
@@ -102,13 +102,22 @@
     display:inline-block;
     margin-top:11px;
     font-size:11px;
+    font-weight:700;
     letter-spacing:.6px;
-    color:var(--paper);
-    border:1px solid rgba(221,199,161,.5);
-    background:rgba(221,199,161,.14);
+    color:var(--walnut);
+    border:1px solid rgba(78,44,27,.12);
+    background:var(--cream);
     border-radius:999px;
     padding:5px 12px;
   }
+
+  /* parked planes on the tarmac, as seen through the header "window" */
+  .tarmac{position:absolute;left:0;right:0;bottom:0;height:70px;z-index:1;overflow:hidden;pointer-events:none;}
+  .plane-mini{position:absolute;display:block;}
+  .plane-mini svg{display:block;width:100%;height:100%;}
+  .plane-mini.p1{left:8%;width:30px;height:30px;bottom:13px;opacity:.42;transform:rotate(91deg);}
+  .plane-mini.p2{left:46%;width:22px;height:22px;bottom:19px;opacity:.32;transform:rotate(86deg);}
+  .plane-mini.p3{left:80%;width:36px;height:36px;bottom:11px;opacity:.48;transform:rotate(96deg);}
 
   /* ===== Search ===== */
   .search-zone{
@@ -182,6 +191,11 @@
   .role-icon{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--petrol-pale);color:var(--petrol);margin-top:1px;}
   .role-icon svg{width:15px;height:15px;}
   .role-icon.collector{background:var(--moss-pale);color:var(--moss);}
+  .role-block.is-collector .contact-btn,
+  .role-block.is-collector .copy-email-btn{background:var(--moss-pale);border-color:rgba(57,86,46,.4);color:var(--moss);}
+  .role-block.is-collector .contact-btn:hover,
+  .role-block.is-collector .copy-email-btn:hover{border-color:var(--moss);background:#DCE7D3;}
+  .role-block.is-collector .copy-email-btn.is-copied{background:var(--moss);border-color:var(--moss);color:var(--paper);}
   .role-info{flex:1;min-width:0;}
   .role-kind{font-size:11px;color:var(--ink-soft);font-weight:700;margin-bottom:2px;letter-spacing:.3px;}
   .role-name{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:4px;}
@@ -231,10 +245,14 @@
   @media (max-width:520px){
     header{padding:28px 16px 66px;}
     .masthead{gap:12px;}
-    .seal{width:46px;height:46px;border-radius:13px;}
+    .seal{width:46px;height:46px;}
     .seal svg{width:21px;height:21px;}
     .masthead-text h1{font-size:clamp(21px,7vw,27px);}
     .masthead-text p{font-size:13px;line-height:1.35;}
+    .tarmac{height:52px;}
+    .plane-mini.p1{width:22px;height:22px;bottom:10px;}
+    .plane-mini.p2{width:17px;height:17px;bottom:14px;}
+    .plane-mini.p3{width:26px;height:26px;bottom:8px;}
     .search-zone{margin-top:-30px;padding:0 12px;top:8px;}
     .search-card{padding:13px 14px 12px;border-radius:17px;}
     main{padding-left:12px;padding-right:12px;}
@@ -248,13 +266,25 @@
 <body>
 
 <header>
+  <div class="tarmac" aria-hidden="true">
+    <span class="plane-mini p1"><svg viewBox="0 0 64 64" fill="#F1E7D2"><path d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/></svg></span>
+    <span class="plane-mini p2"><svg viewBox="0 0 64 64" fill="#F1E7D2"><path d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/></svg></span>
+    <span class="plane-mini p3"><svg viewBox="0 0 64 64" fill="#F1E7D2"><path d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/></svg></span>
+  </div>
   <div class="masthead">
     <div class="seal">
       <svg viewBox="0 0 64 64" fill="none">
-        <path d="M6 46 Q22 40 30 26" stroke="#BF7E30" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6" opacity=".85"/>
-        <g transform="translate(32 32) rotate(-38) translate(-32 -32)">
-          <path fill="#F3E7D0" d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/>
+        <circle cx="32" cy="32" r="26" stroke="#F1E7D2" stroke-width="1.6" opacity=".55"/>
+        <circle cx="32" cy="32" r="20" stroke="#BF7E30" stroke-width="1.3" opacity=".75"/>
+        <g stroke="#F1E7D2" stroke-width="1" stroke-linecap="round" opacity=".4">
+          <path d="M32 9 L32 55"/>
+          <path d="M9 32 L55 32"/>
+          <path d="M15.7 15.7 L48.3 48.3"/>
+          <path d="M48.3 15.7 L15.7 48.3"/>
         </g>
+        <path d="M32 14 L36.5 32 L32 50 L27.5 32 Z" fill="#F1E7D2"/>
+        <path d="M14 32 L32 27.5 L50 32 L32 36.5 Z" fill="#BF7E30" opacity=".9"/>
+        <circle cx="32" cy="32" r="2.6" fill="#0D3D56"/>
       </svg>
     </div>
     <div class="masthead-text">
@@ -360,7 +390,7 @@ function copyEmailBtn(email){
 
 function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
   if(!name && !email && !phone){
-    return `<div class="role-block">
+    return `<div class="role-block${isCollector?' is-collector':''}">
       <div class="role-icon${isCollector?' collector':''}">${iconSvg}</div>
       <div class="role-info">
         <div class="role-kind">${kind}</div>
@@ -368,7 +398,7 @@ function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
       </div>
     </div>`;
   }
-  return `<div class="role-block">
+  return `<div class="role-block${isCollector?' is-collector':''}">
     <div class="role-icon${isCollector?' collector':''}">${iconSvg}</div>
     <div class="role-info">
       <div class="role-kind">${kind}</div>
