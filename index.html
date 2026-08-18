@@ -5,21 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>מבצע אבי בחופש</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;600;700;800;900&family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* ===== 1960s executive-office palette ===== */
   :root{
-    --sky:#eaf7ff;
-    --sky-2:#cfeeff;
-    --sky-3:#9ed8f7;
-    --blue:#1367a8;
-    --blue-2:#0d4f84;
-    --ink:#17324d;
-    --ink-soft:#6b7f91;
-    --line:#cfe1ec;
-    --white:#ffffff;
-    --cloud:#f8fcff;
-    --accent:#ffb84d;
-    --good:#2f8f67;
+    --walnut:#4E2C1B;
+    --walnut-light:#6B4023;
+    --walnut-deep:#33190D;
+    --petrol:#0D3D56;
+    --petrol-light:#175A7D;
+    --petrol-pale:#E3EDF1;
+    --cream:#DDC7A1;
+    --cream-pale:#F1E7D2;
+    --paper:#FAF4E7;
+    --paper-2:#F5EDDB;
+    --card:#FFFCF6;
+    --stone:#B8A38B;
+    --stone-soft:rgba(184,163,139,.42);
+    --amber:#BF7E30;
+    --amber-light:#D89A52;
+    --amber-pale:#F3E1C3;
+    --moss:#39562E;
+    --moss-pale:#E1EADB;
+    --ink:#2E1B10;
+    --ink-soft:#7C6A53;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -28,63 +37,38 @@
     color:var(--ink);
     font-family:'Heebo',sans-serif;
     min-height:100vh;
-    background:
-      radial-gradient(circle at 15% 10%, rgba(255,255,255,.95) 0 7%, transparent 8%),
-      radial-gradient(circle at 22% 13%, rgba(255,255,255,.75) 0 5%, transparent 6%),
-      linear-gradient(180deg,#dff4ff 0%,#f7fbfd 38%,#eef7fb 100%);
+    background:var(--paper);
     position:relative;
   }
+  /* faint ledger-paper grain — felt more than seen */
   body::before{
     content:"";
     position:fixed; inset:0;
     pointer-events:none;
-    opacity:.45;
+    opacity:.6;
     background-image:
-      radial-gradient(circle at 80% 14%, rgba(255,255,255,.9) 0 4%, transparent 4.5%),
-      radial-gradient(circle at 84% 16%, rgba(255,255,255,.75) 0 3%, transparent 3.5%),
-      radial-gradient(circle at 13% 70%, rgba(255,255,255,.65) 0 4%, transparent 4.5%);
+      repeating-linear-gradient(0deg, rgba(184,163,139,.055) 0 1px, transparent 1px 32px),
+      repeating-linear-gradient(90deg, rgba(184,163,139,.04) 0 1px, transparent 1px 32px);
   }
   .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
-  :focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:6px;}
+  :focus-visible{outline:2.5px solid var(--petrol);outline-offset:2px;border-radius:6px;}
 
+  /* ===== Header ===== */
   header{
-    color:#fff;
-    padding:36px 24px 78px;
+    color:var(--paper);
+    padding:38px 24px 80px;
     position:relative;
     overflow:hidden;
-    background:
-      linear-gradient(180deg,rgba(8,79,132,.92),rgba(34,142,203,.84)),
-      linear-gradient(135deg,#0d5f9f,#5fc2ef);
-  }
-  header::before{
-    content:"✈";
-    position:absolute;
-    left:8%; top:16px;
-    font-size:88px;
-    opacity:.10;
-    transform:rotate(-12deg);
+    background:linear-gradient(150deg, var(--petrol) 0%, #0A2E41 55%, var(--walnut-deep) 135%);
   }
   header::after{
     content:"";
     position:absolute;
-    left:-5%; right:-5%; bottom:-48px;
-    height:100px;
-    background:
-      radial-gradient(ellipse at 10% 40%,#fff 0 33%,transparent 34%),
-      radial-gradient(ellipse at 28% 55%,#fff 0 30%,transparent 31%),
-      radial-gradient(ellipse at 46% 45%,#fff 0 36%,transparent 37%),
-      radial-gradient(ellipse at 67% 57%,#fff 0 30%,transparent 31%),
-      radial-gradient(ellipse at 84% 42%,#fff 0 36%,transparent 37%);
-    opacity:.95;
+    left:0; right:0; bottom:0;
+    height:3px;
+    background:linear-gradient(90deg, transparent, var(--amber) 18%, var(--amber-light) 50%, var(--amber) 82%, transparent);
+    opacity:.9;
   }
-  .cloud{position:absolute;background:rgba(255,255,255,.88);border-radius:999px;filter:drop-shadow(0 8px 18px rgba(42,123,174,.08));z-index:1;}
-  .cloud::before,.cloud::after{content:"";position:absolute;background:inherit;border-radius:50%;}
-  .cloud::before{width:44%;height:145%;right:18%;bottom:0;}
-  .cloud::after{width:34%;height:110%;left:18%;bottom:0;}
-  .cloud.c1{width:150px;height:34px;right:6%;top:22px;opacity:.72;}
-  .cloud.c2{width:105px;height:25px;left:19%;top:80px;opacity:.5;}
-  .cloud.c3{width:180px;height:38px;left:-30px;bottom:28px;opacity:.66;}
-
   .masthead{
     max-width:980px;
     margin:0 auto;
@@ -94,38 +78,39 @@
     position:relative;
     z-index:2;
   }
+  /* the seal — a brass travel-stamp medallion, the one signature flourish */
   .seal{
     flex:0 0 auto;
     width:60px;height:60px;
-    border-radius:18px;
-    border:1px solid rgba(255,255,255,.7);
+    border-radius:16px;
+    border:1.5px solid rgba(221,199,161,.5);
     display:flex;align-items:center;justify-content:center;
-    background:rgba(255,255,255,.16);
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 10px 30px rgba(4,51,85,.18);
-    backdrop-filter:blur(8px);
+    background:linear-gradient(160deg, rgba(221,199,161,.18), rgba(191,126,48,.12));
+    box-shadow:inset 0 0 0 1px rgba(221,199,161,.2), inset 0 1px 0 rgba(255,255,255,.15), 0 12px 28px rgba(20,10,4,.3);
   }
-  .seal svg{width:26px;height:26px;transform:rotate(-18deg);}
+  .seal svg{width:27px;height:27px;transform:rotate(-18deg);}
   .masthead-text h1{
-    font-family:'Rubik',sans-serif;
-    font-weight:900;
+    font-family:'Frank Ruhl Libre',serif;
+    font-weight:800;
     font-size:clamp(24px,4vw,34px);
     margin:0 0 4px;
     letter-spacing:-.2px;
     line-height:1.2;
   }
-  .masthead-text p{margin:0;color:#eaf7ff;font-size:15.5px;line-height:1.5;font-weight:500;}
+  .masthead-text p{margin:0;color:#EFE3CB;font-size:15.5px;line-height:1.5;font-weight:500;}
   .masthead-text .tag{
     display:inline-block;
-    margin-top:10px;
+    margin-top:11px;
     font-size:11px;
-    letter-spacing:.5px;
-    color:#fff;
-    border:1px solid rgba(255,255,255,.45);
-    background:rgba(255,255,255,.12);
+    letter-spacing:.6px;
+    color:var(--paper);
+    border:1px solid rgba(221,199,161,.5);
+    background:rgba(221,199,161,.14);
     border-radius:999px;
     padding:5px 12px;
   }
 
+  /* ===== Search ===== */
   .search-zone{
     max-width:980px;
     margin:-36px auto 0;
@@ -135,26 +120,26 @@
     z-index:30;
   }
   .search-card{
-    background:rgba(255,255,255,.97);
-    border:1px solid rgba(190,220,235,.9);
-    border-radius:20px;
-    box-shadow:0 20px 45px -24px rgba(13,79,132,.45),0 4px 14px rgba(32,103,149,.1);
+    background:var(--card);
+    border:1px solid var(--stone-soft);
+    border-radius:19px;
+    box-shadow:0 22px 46px -26px rgba(46,27,16,.5), 0 4px 14px rgba(46,27,16,.09);
     padding:16px 18px 14px;
-    backdrop-filter:blur(12px);
   }
-  .search-row{display:flex;align-items:center;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:12px;}
-  .search-row svg{flex:0 0 auto;color:var(--blue);opacity:.75;}
+  .search-row{display:flex;align-items:center;gap:12px;border-bottom:1px dashed var(--stone-soft);padding-bottom:12px;}
+  .search-row svg{flex:0 0 auto;color:var(--petrol);opacity:.85;}
   #search{flex:1;border:none;outline:none;background:transparent;font-family:'Heebo',sans-serif;font-size:17px;font-weight:600;color:var(--ink);min-width:0;}
-  #search::placeholder{color:#94a8b8;font-weight:500;}
+  #search::placeholder{color:var(--ink-soft);font-weight:500;}
   #search::-webkit-search-cancel-button{display:none;}
-  .clear-btn{background:#eef7fc;border:none;cursor:pointer;color:var(--blue-2);font-size:13px;font-family:'Heebo',sans-serif;padding:7px 12px;border-radius:999px;display:none;min-height:32px;}
+  .clear-btn{background:var(--petrol-pale);border:none;cursor:pointer;color:var(--petrol);font-size:13px;font-family:'Heebo',sans-serif;padding:7px 12px;border-radius:999px;display:none;min-height:36px;transition:background .18s ease;}
   .clear-btn.show{display:inline-block;}
-
+  .clear-btn:hover{background:var(--amber-pale);}
 
   main{max-width:980px;margin:0 auto;padding:22px 24px 70px;position:relative;z-index:2;}
   .result-meta{font-size:12.5px;color:var(--ink-soft);margin:2px 4px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
-  .result-meta b{color:var(--blue-2);}
-  .reset-all{background:none;border:none;color:var(--blue);font-size:12.5px;font-weight:700;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:2px;}
+  .result-meta b{color:var(--petrol);}
+  .reset-all{background:none;border:none;color:var(--petrol);font-size:12.5px;font-weight:700;cursor:pointer;padding:4px 2px;text-decoration:underline;text-underline-offset:2px;transition:color .18s ease;}
+  .reset-all:hover{color:var(--walnut);}
 
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
 
@@ -162,63 +147,91 @@
     grid-column:1/-1;
     display:flex;align-items:center;gap:9px;
     padding:16px 2px 2px;
-    font-family:'Rubik',sans-serif;font-weight:800;font-size:14.5px;color:var(--blue-2);
+    font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:15px;color:var(--walnut);
   }
   .group-header:first-child{padding-top:2px;}
-  .group-header .line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
-  .group-header .count{font-family:'Heebo',sans-serif;font-weight:700;font-size:11.5px;color:var(--ink-soft);background:#eef6fb;border-radius:999px;padding:2px 9px;}
+  .group-header .line{flex:1;height:1px;background:linear-gradient(90deg,var(--stone),transparent);}
+  .group-header .count{font-family:'Heebo',sans-serif;font-weight:700;font-size:11.5px;color:var(--walnut);background:var(--cream-pale);border-radius:999px;padding:2px 9px;}
 
+  /* ===== Cards — each one a little department letterhead ===== */
   .card{
-    background:rgba(255,255,255,.97);
-    border:1px solid var(--line);
-    border-radius:17px;
+    background:var(--card);
+    border:1px solid var(--stone-soft);
+    border-radius:15px;
     position:relative;
-    box-shadow:0 14px 28px -20px rgba(13,79,132,.45);
+    box-shadow:0 14px 26px -20px rgba(46,27,16,.4);
     overflow:hidden;
     animation:rise .3s ease both;
+    transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
+  .card:hover{transform:translateY(-2px);border-color:var(--amber);box-shadow:0 18px 32px -18px rgba(46,27,16,.48);}
   @keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
   .card::before{
     content:"";
     position:absolute;
     top:0; right:0; left:0;
-    height:4px;
-    background:linear-gradient(90deg,var(--sky-3),var(--blue),var(--accent));
+    height:3px;
+    background:var(--walnut);
   }
-  .card-head{padding:16px 16px 12px;border-bottom:1px dashed var(--line);background:linear-gradient(180deg,#fbfdff,#fff);}
-  .office-label{font-size:10.5px;letter-spacing:.5px;color:var(--blue);text-transform:uppercase;display:block;margin-bottom:3px;font-weight:700;}
-  .dept-title{font-family:'Rubik',sans-serif;font-weight:700;font-size:18px;color:var(--blue-2);margin:0;line-height:1.25;}
+  .card-head{padding:16px 16px 12px;border-bottom:1px dashed var(--stone-soft);background:linear-gradient(180deg,var(--cream-pale),var(--card) 70%);}
+  .office-label{font-size:10.5px;letter-spacing:.6px;color:var(--petrol);text-transform:uppercase;display:block;margin-bottom:3px;font-weight:700;}
+  .dept-title{font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:18.5px;color:var(--walnut);margin:0;line-height:1.3;}
   .dept-title.generic{color:var(--ink-soft);font-weight:500;font-size:14px;font-family:'Heebo',sans-serif;}
-  .card-body{padding:12px 16px 16px;display:flex;flex-direction:column;gap:11px;}
+  .card-body{padding:13px 16px 16px;display:flex;flex-direction:column;gap:11px;}
   .role-block{display:flex;gap:10px;}
-  .role-icon{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:#edf7fc;color:var(--blue);margin-top:1px;}
+  .role-icon{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;background:var(--petrol-pale);color:var(--petrol);margin-top:1px;}
   .role-icon svg{width:15px;height:15px;}
-  .role-icon.collector{background:#eaf7f1;color:var(--good);}
+  .role-icon.collector{background:var(--moss-pale);color:var(--moss);}
   .role-info{flex:1;min-width:0;}
-  .role-kind{font-size:11px;color:var(--ink-soft);font-weight:700;margin-bottom:1px;}
-  .role-name{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:3px;}
-  .role-contact{display:flex;flex-wrap:wrap;gap:6px;}
+  .role-kind{font-size:11px;color:var(--ink-soft);font-weight:700;margin-bottom:2px;letter-spacing:.3px;}
+  .role-name{font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:4px;}
+  .role-contact{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .email-row{display:inline-flex;align-items:center;gap:6px;min-width:0;max-width:100%;}
+
   .contact-btn{
     display:inline-flex;align-items:center;gap:5px;
-    font-size:12px;color:var(--blue-2);background:#f5fbff;border:1px solid var(--line);
-    border-radius:8px;padding:5px 8px;cursor:pointer;text-decoration:none;
-    max-width:100%;min-height:30px;font-family:'Heebo',sans-serif;
+    font-size:12px;color:var(--petrol);background:var(--paper-2);border:1px solid var(--stone-soft);
+    border-radius:9px;padding:6px 9px;cursor:pointer;text-decoration:none;
+    max-width:100%;min-width:0;min-height:38px;font-family:'Heebo',sans-serif;
+    transition:background .18s ease, border-color .18s ease;
   }
-  .contact-btn:active{background:var(--sky-2);}
-  .contact-btn svg{flex:0 0 auto;width:12px;height:12px;opacity:.7;}
+  .contact-btn:hover{border-color:var(--amber);background:var(--amber-pale);}
+  .contact-btn:active{background:var(--cream-pale);}
+  .contact-btn svg{flex:0 0 auto;width:12px;height:12px;opacity:.75;}
   .contact-btn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .role-empty{font-size:12.5px;color:#aab8c2;font-style:italic;}
+
+  /* copy-email button — icon only until copied, then grows to confirm */
+  .copy-email-btn{
+    flex:0 0 auto;
+    display:inline-flex;align-items:center;justify-content:center;gap:5px;
+    min-width:38px;min-height:38px;padding:0 10px;
+    border-radius:9px;border:1px solid var(--stone-soft);
+    background:var(--paper-2);color:var(--petrol);cursor:pointer;
+    font-family:'Heebo',sans-serif;
+    transition:background .18s ease, border-color .18s ease, color .18s ease, transform .15s ease;
+  }
+  .copy-email-btn svg{width:14px;height:14px;}
+  .copy-email-btn .ci-check,.copy-email-btn .ci-label{display:none;}
+  .copy-email-btn:hover{border-color:var(--amber);background:var(--amber-pale);}
+  .copy-email-btn:active{transform:scale(.94);}
+  .copy-email-btn.is-copied{background:var(--moss-pale);border-color:var(--moss);color:var(--moss);}
+  .copy-email-btn.is-copied .ci-copy{display:none;}
+  .copy-email-btn.is-copied .ci-check,.copy-email-btn.is-copied .ci-label{display:inline-flex;}
+  .copy-email-btn .ci-label{font-size:12px;font-weight:700;white-space:nowrap;}
+
+  .role-empty{font-size:12.5px;color:var(--stone);font-style:italic;}
 
   .empty-state{text-align:center;padding:60px 20px;color:var(--ink-soft);}
-  .empty-state .big{font-family:'Rubik',sans-serif;font-size:20px;color:var(--blue-2);margin-bottom:6px;}
-  .empty-state button{margin-top:14px;background:var(--blue);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;}
-  mark{background:rgba(255,184,77,.4);color:inherit;border-radius:3px;padding:0 2px;}
-  footer{text-align:center;padding:18px;font-size:12px;color:var(--ink-soft);}
+  .empty-state .big{font-family:'Frank Ruhl Libre',serif;font-size:21px;color:var(--walnut);margin-bottom:6px;font-weight:700;}
+  .empty-state button{margin-top:14px;background:var(--petrol);color:var(--paper);border:none;border-radius:999px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Heebo',sans-serif;transition:background .18s ease;}
+  .empty-state button:hover{background:var(--petrol-light);}
+  mark{background:rgba(191,126,48,.32);color:var(--ink);border-radius:3px;padding:0 2px;}
+  footer{text-align:center;padding:20px;font-size:12px;color:var(--ink-soft);letter-spacing:.3px;}
 
   @media (max-width:520px){
-    header{padding:26px 16px 66px;}
+    header{padding:28px 16px 66px;}
     .masthead{gap:12px;}
-    .seal{width:46px;height:46px;border-radius:14px;}
+    .seal{width:46px;height:46px;border-radius:13px;}
     .seal svg{width:21px;height:21px;}
     .masthead-text h1{font-size:clamp(21px,7vw,27px);}
     .masthead-text p{font-size:13px;line-height:1.35;}
@@ -235,15 +248,12 @@
 <body>
 
 <header>
-  <div class="cloud c1"></div>
-  <div class="cloud c2"></div>
-  <div class="cloud c3"></div>
   <div class="masthead">
     <div class="seal">
       <svg viewBox="0 0 64 64" fill="none">
-        <path d="M6 46 Q22 40 30 26" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6" opacity=".7"/>
+        <path d="M6 46 Q22 40 30 26" stroke="#BF7E30" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6" opacity=".85"/>
         <g transform="translate(32 32) rotate(-38) translate(-32 -32)">
-          <path fill="#fff" d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/>
+          <path fill="#F3E7D0" d="M32 10c1.7 0 3 3.4 3 7.6v9.9l14.6 8.6c.9.5 1.4 1.5 1.4 2.5v2c0 .7-.6 1.1-1.3.9L35 37.4v8.9l4.6 3.5c.5.4.8 1 .8 1.6v1.7c0 .6-.5 1-1.1.8L32 51.4l-7.3 2.5c-.6.2-1.1-.2-1.1-.8v-1.7c0-.6.3-1.2.8-1.6l4.6-3.5v-8.9l-14.7 4.1c-.7.2-1.3-.2-1.3-.9v-2c0-1 .5-2 1.4-2.5L29 27.5v-9.9c0-4.2 1.3-7.6 3-7.6Z"/>
         </g>
       </svg>
     </div>
@@ -287,6 +297,8 @@ const ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const ICON_CLIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M9 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/><path d="M9 12h6M9 16h6"/></svg>';
 const ICON_MAIL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>';
 const ICON_PHONE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+const ICON_COPY = '<svg class="ci-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+const ICON_CHECK_SM = '<svg class="ci-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
 
 // Group data by office, then keep original order within an office (which follows department order)
 const grouped = [...DATA].sort((a,b) => DATA.map(r=>r.office).indexOf(a.office) - DATA.map(r=>r.office).indexOf(b.office));
@@ -341,6 +353,11 @@ function contactBtn(kind, value, icon, q){
   return `<button type="button" class="contact-btn" ${dataAttr} title="${title}">${icon}<span>${highlight(value,q)}</span></button>`;
 }
 
+function copyEmailBtn(email){
+  if(!email) return '';
+  return `<button type="button" class="copy-email-btn" data-email="${esc(email)}" aria-label="העתק כתובת אימייל" title="העתק כתובת אימייל">${ICON_COPY}${ICON_CHECK_SM}<span class="ci-label">הועתק</span></button>`;
+}
+
 function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
   if(!name && !email && !phone){
     return `<div class="role-block">
@@ -357,7 +374,7 @@ function roleBlock(kind, iconSvg, name, email, phone, isCollector, q){
       <div class="role-kind">${kind}</div>
       <div class="role-name">${highlight(name || '—', q)}</div>
       <div class="role-contact">
-        ${contactBtn('email', email, ICON_MAIL, q)}
+        ${email ? `<span class="email-row">${contactBtn('email', email, ICON_MAIL, q)}${copyEmailBtn(email)}</span>` : ''}
         ${contactBtn('phone', phone, ICON_PHONE, q)}
       </div>
     </div>
@@ -377,6 +394,42 @@ function cardHTML(rec, q){
       ${roleBlock('מי מגבה אותי', ICON_CLIP, rec.collector_name, rec.collector_email, null, true, q)}
     </div>
   </div>`;
+}
+
+function fallbackCopyText(text){
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly','');
+  ta.style.position = 'fixed';
+  ta.style.top = '-1000px';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try{ document.execCommand('copy'); }catch(err){}
+  document.body.removeChild(ta);
+}
+
+function markCopied(btn){
+  btn.classList.add('is-copied');
+  btn.setAttribute('aria-label','הכתובת הועתקה');
+  clearTimeout(btn._copyTimer);
+  btn._copyTimer = setTimeout(() => {
+    btn.classList.remove('is-copied');
+    btn.setAttribute('aria-label','העתק כתובת אימייל');
+  }, 1700);
+}
+
+function copyEmailToClipboard(email, btn){
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(email).then(() => markCopied(btn)).catch(() => {
+      fallbackCopyText(email);
+      markCopied(btn);
+    });
+  } else {
+    fallbackCopyText(email);
+    markCopied(btn);
+  }
 }
 
 function render(){
@@ -420,6 +473,12 @@ clearBtn.addEventListener('click', () => {
 document.getElementById('resetFromEmpty').addEventListener('click', resetAll);
 
 grid.addEventListener('click', (e) => {
+  const copyBtn = e.target.closest('.copy-email-btn');
+  if(copyBtn){
+    const email = copyBtn.getAttribute('data-email');
+    if(email) copyEmailToClipboard(email, copyBtn);
+    return;
+  }
   const btn = e.target.closest('.contact-btn');
   if(!btn) return;
   const email = btn.getAttribute('data-gmail');
